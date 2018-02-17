@@ -46,14 +46,12 @@ void GetEfficiency(){
   TString name="EGMid";
   xAxisLabel="pT(GeV)";
 
-  f[0] = new TFile("eff.root");
+  f[0] = new TFile("a.root");
   for(int i=0;i<nfiles;i++){
-    histName1.push_back("prbPt_Loose80X");
+    histName1.push_back("prbPt_Medium80X");
     histName2.push_back("prbPt");
-    histName1.push_back("prbPt_Loose94X");
+    histName1.push_back("prbPt_Medium94X");
     histName2.push_back("prbPt");
-    // histName1.push_back("prbPt_Loose94X_vBin");
-    // histName2.push_back("prbPtvBin");
   }
 
   rebin=1;

@@ -1,35 +1,27 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Sat Feb 17 14:02:43 2018 by ROOT version 6.10/02
+// Sat Feb 17 15:57:18 2018 by ROOT version 6.10/02
 // from TTree fitter_tree/fitter_tree
-// found on file: /home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/mc/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/crab_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/180130_234603/0000/TnPTree_mc_1.root
+// found on file: /home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01162018/Moriond18_V1/mc/TnPTree_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_all.root
 //////////////////////////////////////////////////////////
 
-#ifndef NtupleVariables_h
-#define NtupleVariables_h
+#ifndef oldMC_h
+#define oldMC_h
 
 #include <TROOT.h>
 #include <TChain.h>
-#include <TLorentzVector.h>
 #include <TFile.h>
-#include <TSelector.h>
 
 // Header file for the classes stored in the TTree if any.
-#include <vector>
-#include <vector>
-#include <vector>
 
-// Fixed size dimensions of array or collections stored in the TTree if any.
-
-using namespace std;
-class NtupleVariables : public TSelector {
- public :
+class oldMC {
+public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
-// Declaration of leaf types
+   // Declaration of leaf types
    Float_t         el_3charge;
    Float_t         el_5x5_e1x5;
    Float_t         el_5x5_e2x5;
@@ -56,15 +48,11 @@ class NtupleVariables : public TSelector {
    Float_t         el_fbrem;
    Float_t         el_hcalIso;
    Float_t         el_hoe;
-   Float_t         el_miniIsoAll;
-   Float_t         el_miniIsoChg;
    Float_t         el_neuIso;
    Float_t         el_phi;
    Float_t         el_phiW;
    Float_t         el_phoIso;
    Float_t         el_pt;
-   Float_t         el_ptRatio;
-   Float_t         el_ptRel;
    Float_t         el_q;
    Float_t         el_r9;
    Float_t         el_reliso03;
@@ -82,7 +70,6 @@ class NtupleVariables : public TSelector {
    Float_t         el_tk_phi;
    Float_t         el_tk_pt;
    Float_t         el_trkIso;
-   Float_t         el_MVATTH;
    Float_t         el_chisq;
    Float_t         el_dxy;
    Float_t         el_dz;
@@ -91,37 +78,8 @@ class NtupleVariables : public TSelector {
    Float_t         el_nonTrigMVA;
    Float_t         el_nonTrigMVA80X;
    Float_t         el_pf_pt;
-   Float_t         el_sip3d;
    Float_t         el_trigMVA;
-   Int_t           passingCharge;
-   Int_t           passingConvIHit0;
-   Int_t           passingConvIHit0Chg;
-   Int_t           passingConvIHit1;
-   Int_t           passingConvVeto;
-   Int_t           passingCutBasedLooseNoIso;
-   Int_t           passingCutBasedLooseNoIso94X;
-   Int_t           passingCutBasedMediumMini;
-   Int_t           passingCutBasedMediumMini94X;
-   Int_t           passingCutBasedMediumNoIso;
-   Int_t           passingCutBasedMediumNoIso94X;
-   Int_t           passingCutBasedStopsDilepton;
-   Int_t           passingCutBasedTightMini;
-   Int_t           passingCutBasedTightMini94X;
-   Int_t           passingCutBasedTightNoIso;
-   Int_t           passingCutBasedTightNoIso94X;
-   Int_t           passingCutBasedVetoNoIso;
-   Int_t           passingCutBasedVetoNoIso94X;
-   Int_t           passingFOID2D;
    Int_t           passingHLTsafe;
-   Int_t           passingIDEmu;
-   Int_t           passingIHit0;
-   Int_t           passingIHit1;
-   Int_t           passingISOEmu;
-   Int_t           passingLeptonMvaM;
-   Int_t           passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04;
-   Int_t           passingLeptonMvaVT;
-   Int_t           passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04;
-   Int_t           passingLoose2D;
    Int_t           passingLoose80X;
    Int_t           passingLoose94X;
    Int_t           passingMVA80Xwp80;
@@ -130,30 +88,10 @@ class NtupleVariables : public TSelector {
    Int_t           passingMVA94Xwp80noiso;
    Int_t           passingMVA94Xwp90iso;
    Int_t           passingMVA94Xwp90noiso;
-   Int_t           passingMVATight;
-   Int_t           passingMVAVLoose;
-   Int_t           passingMVAVLooseFO;
-   Int_t           passingMVAVLooseMini;
-   Int_t           passingMVAVLooseMini2;
-   Int_t           passingMVAVLooseMini4;
-   Int_t           passingMVAWP80;
-   Int_t           passingMVAWP90;
    Int_t           passingMedium80X;
    Int_t           passingMedium94X;
-   Int_t           passingMini;
-   Int_t           passingMini2;
-   Int_t           passingMini4;
-   Int_t           passingMultiIsoEmu;
-   Int_t           passingMultiIsoM;
-   Int_t           passingMultiIsoT;
-   Int_t           passingMultiIsoVT;
-   Int_t           passingTight2D3D;
    Int_t           passingTight80X;
    Int_t           passingTight94X;
-   Int_t           passingTightConvIHit0;
-   Int_t           passingTightID2D3D;
-   Int_t           passingTightIP2D;
-   Int_t           passingTightIP3D;
    Int_t           passingVeto80X;
    Int_t           passingVeto94X;
    Float_t         weight;
@@ -230,15 +168,11 @@ class NtupleVariables : public TSelector {
    TBranch        *b_el_fbrem;   //!
    TBranch        *b_el_hcalIso;   //!
    TBranch        *b_el_hoe;   //!
-   TBranch        *b_el_miniIsoAll;   //!
-   TBranch        *b_el_miniIsoChg;   //!
    TBranch        *b_el_neuIso;   //!
    TBranch        *b_el_phi;   //!
    TBranch        *b_el_phiW;   //!
    TBranch        *b_el_phoIso;   //!
    TBranch        *b_el_pt;   //!
-   TBranch        *b_el_ptRatio;   //!
-   TBranch        *b_el_ptRel;   //!
    TBranch        *b_el_q;   //!
    TBranch        *b_el_r9;   //!
    TBranch        *b_el_reliso03;   //!
@@ -256,7 +190,6 @@ class NtupleVariables : public TSelector {
    TBranch        *b_el_tk_phi;   //!
    TBranch        *b_el_tk_pt;   //!
    TBranch        *b_el_trkIso;   //!
-   TBranch        *b_el_MVATTH;   //!
    TBranch        *b_el_chisq;   //!
    TBranch        *b_el_dxy;   //!
    TBranch        *b_el_dz;   //!
@@ -265,37 +198,8 @@ class NtupleVariables : public TSelector {
    TBranch        *b_el_nonTrigMVA;   //!
    TBranch        *b_el_nonTrigMVA80X;   //!
    TBranch        *b_el_pf_pt;   //!
-   TBranch        *b_el_sip3d;   //!
    TBranch        *b_el_trigMVA;   //!
-   TBranch        *b_passingCharge;   //!
-   TBranch        *b_passingConvIHit0;   //!
-   TBranch        *b_passingConvIHit0Chg;   //!
-   TBranch        *b_passingConvIHit1;   //!
-   TBranch        *b_passingConvVeto;   //!
-   TBranch        *b_passingCutBasedLooseNoIso;   //!
-   TBranch        *b_passingCutBasedLooseNoIso94X;   //!
-   TBranch        *b_passingCutBasedMediumMini;   //!
-   TBranch        *b_passingCutBasedMediumMini94X;   //!
-   TBranch        *b_passingCutBasedMediumNoIso;   //!
-   TBranch        *b_passingCutBasedMediumNoIso94X;   //!
-   TBranch        *b_passingCutBasedStopsDilepton;   //!
-   TBranch        *b_passingCutBasedTightMini;   //!
-   TBranch        *b_passingCutBasedTightMini94X;   //!
-   TBranch        *b_passingCutBasedTightNoIso;   //!
-   TBranch        *b_passingCutBasedTightNoIso94X;   //!
-   TBranch        *b_passingCutBasedVetoNoIso;   //!
-   TBranch        *b_passingCutBasedVetoNoIso94X;   //!
-   TBranch        *b_passingFOID2D;   //!
    TBranch        *b_passingHLTsafe;   //!
-   TBranch        *b_passingIDEmu;   //!
-   TBranch        *b_passingIHit0;   //!
-   TBranch        *b_passingIHit1;   //!
-   TBranch        *b_passingISOEmu;   //!
-   TBranch        *b_passingLeptonMvaM;   //!
-   TBranch        *b_passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04;   //!
-   TBranch        *b_passingLeptonMvaVT;   //!
-   TBranch        *b_passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04;   //!
-   TBranch        *b_passingLoose2D;   //!
    TBranch        *b_passingLoose80X;   //!
    TBranch        *b_passingLoose94X;   //!
    TBranch        *b_passingMVA80Xwp80;   //!
@@ -304,30 +208,10 @@ class NtupleVariables : public TSelector {
    TBranch        *b_passingMVA94Xwp80noiso;   //!
    TBranch        *b_passingMVA94Xwp90iso;   //!
    TBranch        *b_passingMVA94Xwp90noiso;   //!
-   TBranch        *b_passingMVATight;   //!
-   TBranch        *b_passingMVAVLoose;   //!
-   TBranch        *b_passingMVAVLooseFO;   //!
-   TBranch        *b_passingMVAVLooseMini;   //!
-   TBranch        *b_passingMVAVLooseMini2;   //!
-   TBranch        *b_passingMVAVLooseMini4;   //!
-   TBranch        *b_passingMVAWP80;   //!
-   TBranch        *b_passingMVAWP90;   //!
    TBranch        *b_passingMedium80X;   //!
    TBranch        *b_passingMedium94X;   //!
-   TBranch        *b_passingMini;   //!
-   TBranch        *b_passingMini2;   //!
-   TBranch        *b_passingMini4;   //!
-   TBranch        *b_passingMultiIsoEmu;   //!
-   TBranch        *b_passingMultiIsoM;   //!
-   TBranch        *b_passingMultiIsoT;   //!
-   TBranch        *b_passingMultiIsoVT;   //!
-   TBranch        *b_passingTight2D3D;   //!
    TBranch        *b_passingTight80X;   //!
    TBranch        *b_passingTight94X;   //!
-   TBranch        *b_passingTightConvIHit0;   //!
-   TBranch        *b_passingTightID2D3D;   //!
-   TBranch        *b_passingTightIP2D;   //!
-   TBranch        *b_passingTightIP3D;   //!
    TBranch        *b_passingVeto80X;   //!
    TBranch        *b_passingVeto94X;   //!
    TBranch        *b_weight;   //!
@@ -376,36 +260,74 @@ class NtupleVariables : public TSelector {
    TBranch        *b_pair_eta;   //!
    TBranch        *b_pair_mass;   //!
    TBranch        *b_pair_pt;   //!
-   
- NtupleVariables(TTree * /*tree*/ =0) : fChain(0) { }
-   ~NtupleVariables() { }
-   void    Init(TTree *tree, string);
-   Bool_t  Notify();
-   Int_t   GetEntry(Long64_t entry, Int_t getall = 0) { return fChain ? fChain->GetTree()->GetEntry(entry, getall) : 0; }
-   double  DeltaPhi(double, double);
-   double  DeltaR(double eta1, double phi1, double eta2, double phi2);
-   void    sortTLorVec(vector<TLorentzVector> *);   
+
+   oldMC(TTree *tree=0);
+   virtual ~oldMC();
+   virtual Int_t    Cut(Long64_t entry);
+   virtual Int_t    GetEntry(Long64_t entry);
+   virtual Long64_t LoadTree(Long64_t entry);
+   virtual void     Init(TTree *tree);
+   virtual void     Loop();
+   virtual Bool_t   Notify();
+   virtual void     Show(Long64_t entry = -1);
 };
 
 #endif
-#ifdef NtupleVariables_cxx
-void NtupleVariables::Init(TTree *tree, string nameData)
-{
-  // The Init() function is called when the selector needs to initialize
-  // a new tree or chain. Typically here the branch addresses and branch
-  // pointers of the tree will be set.
-  // It is normally not necessary to make changes to the generated
-  // code, but the routine can be extended by the user if needed.
-  // Init() will be called many times when running on PROOF
-  // (once per file to be processed).
-  // Set branch addresses and branch pointers
-  if (!tree) return;
-  fChain = tree;
-  fCurrent = -1;
-  fChain->SetMakeClass(1);
 
-   // Set object pointer
-  if (!tree) return;
+#ifdef oldMC_cxx
+oldMC::oldMC(TTree *tree) : fChain(0) 
+{
+// if parameter tree is not specified (or zero), connect the file
+// used to generate this class and read the Tree.
+   if (tree == 0) {
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01162018/Moriond18_V1/mc/TnPTree_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_all.root");
+      if (!f || !f->IsOpen()) {
+         f = new TFile("/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01162018/Moriond18_V1/mc/TnPTree_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_all.root");
+      }
+      TDirectory * dir = (TDirectory*)f->Get("/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01162018/Moriond18_V1/mc/TnPTree_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_all.root:/tnpEleIDs");
+      dir->GetObject("fitter_tree",tree);
+
+   }
+   Init(tree);
+}
+
+oldMC::~oldMC()
+{
+   if (!fChain) return;
+   delete fChain->GetCurrentFile();
+}
+
+Int_t oldMC::GetEntry(Long64_t entry)
+{
+// Read contents of entry.
+   if (!fChain) return 0;
+   return fChain->GetEntry(entry);
+}
+Long64_t oldMC::LoadTree(Long64_t entry)
+{
+// Set the environment to read one entry
+   if (!fChain) return -5;
+   Long64_t centry = fChain->LoadTree(entry);
+   if (centry < 0) return centry;
+   if (fChain->GetTreeNumber() != fCurrent) {
+      fCurrent = fChain->GetTreeNumber();
+      Notify();
+   }
+   return centry;
+}
+
+void oldMC::Init(TTree *tree)
+{
+   // The Init() function is called when the selector needs to initialize
+   // a new tree or chain. Typically here the branch addresses and branch
+   // pointers of the tree will be set.
+   // It is normally not necessary to make changes to the generated
+   // code, but the routine can be extended by the user if needed.
+   // Init() will be called many times when running on PROOF
+   // (once per file to be processed).
+
+   // Set branch addresses and branch pointers
+   if (!tree) return;
    fChain = tree;
    fCurrent = -1;
    fChain->SetMakeClass(1);
@@ -436,15 +358,11 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("el_fbrem", &el_fbrem, &b_el_fbrem);
    fChain->SetBranchAddress("el_hcalIso", &el_hcalIso, &b_el_hcalIso);
    fChain->SetBranchAddress("el_hoe", &el_hoe, &b_el_hoe);
-   fChain->SetBranchAddress("el_miniIsoAll", &el_miniIsoAll, &b_el_miniIsoAll);
-   fChain->SetBranchAddress("el_miniIsoChg", &el_miniIsoChg, &b_el_miniIsoChg);
    fChain->SetBranchAddress("el_neuIso", &el_neuIso, &b_el_neuIso);
    fChain->SetBranchAddress("el_phi", &el_phi, &b_el_phi);
    fChain->SetBranchAddress("el_phiW", &el_phiW, &b_el_phiW);
    fChain->SetBranchAddress("el_phoIso", &el_phoIso, &b_el_phoIso);
    fChain->SetBranchAddress("el_pt", &el_pt, &b_el_pt);
-   fChain->SetBranchAddress("el_ptRatio", &el_ptRatio, &b_el_ptRatio);
-   fChain->SetBranchAddress("el_ptRel", &el_ptRel, &b_el_ptRel);
    fChain->SetBranchAddress("el_q", &el_q, &b_el_q);
    fChain->SetBranchAddress("el_r9", &el_r9, &b_el_r9);
    fChain->SetBranchAddress("el_reliso03", &el_reliso03, &b_el_reliso03);
@@ -462,7 +380,6 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("el_tk_phi", &el_tk_phi, &b_el_tk_phi);
    fChain->SetBranchAddress("el_tk_pt", &el_tk_pt, &b_el_tk_pt);
    fChain->SetBranchAddress("el_trkIso", &el_trkIso, &b_el_trkIso);
-   fChain->SetBranchAddress("el_MVATTH", &el_MVATTH, &b_el_MVATTH);
    fChain->SetBranchAddress("el_chisq", &el_chisq, &b_el_chisq);
    fChain->SetBranchAddress("el_dxy", &el_dxy, &b_el_dxy);
    fChain->SetBranchAddress("el_dz", &el_dz, &b_el_dz);
@@ -471,37 +388,8 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("el_nonTrigMVA", &el_nonTrigMVA, &b_el_nonTrigMVA);
    fChain->SetBranchAddress("el_nonTrigMVA80X", &el_nonTrigMVA80X, &b_el_nonTrigMVA80X);
    fChain->SetBranchAddress("el_pf_pt", &el_pf_pt, &b_el_pf_pt);
-   fChain->SetBranchAddress("el_sip3d", &el_sip3d, &b_el_sip3d);
    fChain->SetBranchAddress("el_trigMVA", &el_trigMVA, &b_el_trigMVA);
-   fChain->SetBranchAddress("passingCharge", &passingCharge, &b_passingCharge);
-   fChain->SetBranchAddress("passingConvIHit0", &passingConvIHit0, &b_passingConvIHit0);
-   fChain->SetBranchAddress("passingConvIHit0Chg", &passingConvIHit0Chg, &b_passingConvIHit0Chg);
-   fChain->SetBranchAddress("passingConvIHit1", &passingConvIHit1, &b_passingConvIHit1);
-   fChain->SetBranchAddress("passingConvVeto", &passingConvVeto, &b_passingConvVeto);
-   fChain->SetBranchAddress("passingCutBasedLooseNoIso", &passingCutBasedLooseNoIso, &b_passingCutBasedLooseNoIso);
-   fChain->SetBranchAddress("passingCutBasedLooseNoIso94X", &passingCutBasedLooseNoIso94X, &b_passingCutBasedLooseNoIso94X);
-   fChain->SetBranchAddress("passingCutBasedMediumMini", &passingCutBasedMediumMini, &b_passingCutBasedMediumMini);
-   fChain->SetBranchAddress("passingCutBasedMediumMini94X", &passingCutBasedMediumMini94X, &b_passingCutBasedMediumMini94X);
-   fChain->SetBranchAddress("passingCutBasedMediumNoIso", &passingCutBasedMediumNoIso, &b_passingCutBasedMediumNoIso);
-   fChain->SetBranchAddress("passingCutBasedMediumNoIso94X", &passingCutBasedMediumNoIso94X, &b_passingCutBasedMediumNoIso94X);
-   fChain->SetBranchAddress("passingCutBasedStopsDilepton", &passingCutBasedStopsDilepton, &b_passingCutBasedStopsDilepton);
-   fChain->SetBranchAddress("passingCutBasedTightMini", &passingCutBasedTightMini, &b_passingCutBasedTightMini);
-   fChain->SetBranchAddress("passingCutBasedTightMini94X", &passingCutBasedTightMini94X, &b_passingCutBasedTightMini94X);
-   fChain->SetBranchAddress("passingCutBasedTightNoIso", &passingCutBasedTightNoIso, &b_passingCutBasedTightNoIso);
-   fChain->SetBranchAddress("passingCutBasedTightNoIso94X", &passingCutBasedTightNoIso94X, &b_passingCutBasedTightNoIso94X);
-   fChain->SetBranchAddress("passingCutBasedVetoNoIso", &passingCutBasedVetoNoIso, &b_passingCutBasedVetoNoIso);
-   fChain->SetBranchAddress("passingCutBasedVetoNoIso94X", &passingCutBasedVetoNoIso94X, &b_passingCutBasedVetoNoIso94X);
-   fChain->SetBranchAddress("passingFOID2D", &passingFOID2D, &b_passingFOID2D);
    fChain->SetBranchAddress("passingHLTsafe", &passingHLTsafe, &b_passingHLTsafe);
-   fChain->SetBranchAddress("passingIDEmu", &passingIDEmu, &b_passingIDEmu);
-   fChain->SetBranchAddress("passingIHit0", &passingIHit0, &b_passingIHit0);
-   fChain->SetBranchAddress("passingIHit1", &passingIHit1, &b_passingIHit1);
-   fChain->SetBranchAddress("passingISOEmu", &passingISOEmu, &b_passingISOEmu);
-   fChain->SetBranchAddress("passingLeptonMvaM", &passingLeptonMvaM, &b_passingLeptonMvaM);
-   fChain->SetBranchAddress("passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04", &passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04, &b_passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04);
-   fChain->SetBranchAddress("passingLeptonMvaVT", &passingLeptonMvaVT, &b_passingLeptonMvaVT);
-   fChain->SetBranchAddress("passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04", &passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04, &b_passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04);
-   fChain->SetBranchAddress("passingLoose2D", &passingLoose2D, &b_passingLoose2D);
    fChain->SetBranchAddress("passingLoose80X", &passingLoose80X, &b_passingLoose80X);
    fChain->SetBranchAddress("passingLoose94X", &passingLoose94X, &b_passingLoose94X);
    fChain->SetBranchAddress("passingMVA80Xwp80", &passingMVA80Xwp80, &b_passingMVA80Xwp80);
@@ -510,30 +398,10 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("passingMVA94Xwp80noiso", &passingMVA94Xwp80noiso, &b_passingMVA94Xwp80noiso);
    fChain->SetBranchAddress("passingMVA94Xwp90iso", &passingMVA94Xwp90iso, &b_passingMVA94Xwp90iso);
    fChain->SetBranchAddress("passingMVA94Xwp90noiso", &passingMVA94Xwp90noiso, &b_passingMVA94Xwp90noiso);
-   fChain->SetBranchAddress("passingMVATight", &passingMVATight, &b_passingMVATight);
-   fChain->SetBranchAddress("passingMVAVLoose", &passingMVAVLoose, &b_passingMVAVLoose);
-   fChain->SetBranchAddress("passingMVAVLooseFO", &passingMVAVLooseFO, &b_passingMVAVLooseFO);
-   fChain->SetBranchAddress("passingMVAVLooseMini", &passingMVAVLooseMini, &b_passingMVAVLooseMini);
-   fChain->SetBranchAddress("passingMVAVLooseMini2", &passingMVAVLooseMini2, &b_passingMVAVLooseMini2);
-   fChain->SetBranchAddress("passingMVAVLooseMini4", &passingMVAVLooseMini4, &b_passingMVAVLooseMini4);
-   fChain->SetBranchAddress("passingMVAWP80", &passingMVAWP80, &b_passingMVAWP80);
-   fChain->SetBranchAddress("passingMVAWP90", &passingMVAWP90, &b_passingMVAWP90);
    fChain->SetBranchAddress("passingMedium80X", &passingMedium80X, &b_passingMedium80X);
    fChain->SetBranchAddress("passingMedium94X", &passingMedium94X, &b_passingMedium94X);
-   fChain->SetBranchAddress("passingMini", &passingMini, &b_passingMini);
-   fChain->SetBranchAddress("passingMini2", &passingMini2, &b_passingMini2);
-   fChain->SetBranchAddress("passingMini4", &passingMini4, &b_passingMini4);
-   fChain->SetBranchAddress("passingMultiIsoEmu", &passingMultiIsoEmu, &b_passingMultiIsoEmu);
-   fChain->SetBranchAddress("passingMultiIsoM", &passingMultiIsoM, &b_passingMultiIsoM);
-   fChain->SetBranchAddress("passingMultiIsoT", &passingMultiIsoT, &b_passingMultiIsoT);
-   fChain->SetBranchAddress("passingMultiIsoVT", &passingMultiIsoVT, &b_passingMultiIsoVT);
-   fChain->SetBranchAddress("passingTight2D3D", &passingTight2D3D, &b_passingTight2D3D);
    fChain->SetBranchAddress("passingTight80X", &passingTight80X, &b_passingTight80X);
    fChain->SetBranchAddress("passingTight94X", &passingTight94X, &b_passingTight94X);
-   fChain->SetBranchAddress("passingTightConvIHit0", &passingTightConvIHit0, &b_passingTightConvIHit0);
-   fChain->SetBranchAddress("passingTightID2D3D", &passingTightID2D3D, &b_passingTightID2D3D);
-   fChain->SetBranchAddress("passingTightIP2D", &passingTightIP2D, &b_passingTightIP2D);
-   fChain->SetBranchAddress("passingTightIP3D", &passingTightIP3D, &b_passingTightIP3D);
    fChain->SetBranchAddress("passingVeto80X", &passingVeto80X, &b_passingVeto80X);
    fChain->SetBranchAddress("passingVeto94X", &passingVeto94X, &b_passingVeto94X);
    fChain->SetBranchAddress("weight", &weight, &b_weight);
@@ -585,7 +453,7 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    Notify();
 }
 
-Bool_t NtupleVariables::Notify()
+Bool_t oldMC::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -596,4 +464,18 @@ Bool_t NtupleVariables::Notify()
    return kTRUE;
 }
 
-#endif // #ifdef temp_cxx
+void oldMC::Show(Long64_t entry)
+{
+// Print contents of entry.
+// If entry is not specified, print current entry
+   if (!fChain) return;
+   fChain->Show(entry);
+}
+Int_t oldMC::Cut(Long64_t entry)
+{
+// This function may be called from Loop.
+// returns  1 if entry is accepted.
+// returns -1 otherwise.
+   return 1;
+}
+#endif // #ifdef oldMC_cxx

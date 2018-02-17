@@ -1,0 +1,1 @@
+/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/data/SingleElectron/crab_17Nov2017_RunB/180130_234739/0000/TnPTree_data_1.root

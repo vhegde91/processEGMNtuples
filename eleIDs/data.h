@@ -1,35 +1,27 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Sat Feb 17 14:02:43 2018 by ROOT version 6.10/02
+// Sat Feb 17 14:02:19 2018 by ROOT version 6.10/02
 // from TTree fitter_tree/fitter_tree
-// found on file: /home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/mc/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/crab_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/180130_234603/0000/TnPTree_mc_1.root
+// found on file: /home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/data/SingleElectron/crab_17Nov2017_RunB/180130_234739/0000/TnPTree_data_1.root
 //////////////////////////////////////////////////////////
 
-#ifndef NtupleVariables_h
-#define NtupleVariables_h
+#ifndef data_h
+#define data_h
 
 #include <TROOT.h>
 #include <TChain.h>
-#include <TLorentzVector.h>
 #include <TFile.h>
-#include <TSelector.h>
 
 // Header file for the classes stored in the TTree if any.
-#include <vector>
-#include <vector>
-#include <vector>
 
-// Fixed size dimensions of array or collections stored in the TTree if any.
-
-using namespace std;
-class NtupleVariables : public TSelector {
- public :
+class data {
+public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
-// Declaration of leaf types
+   // Declaration of leaf types
    Float_t         el_3charge;
    Float_t         el_5x5_e1x5;
    Float_t         el_5x5_e2x5;
@@ -156,9 +148,6 @@ class NtupleVariables : public TSelector {
    Int_t           passingTightIP3D;
    Int_t           passingVeto80X;
    Int_t           passingVeto94X;
-   Float_t         weight;
-   Float_t         totWeight;
-   Float_t         PUweight;
    UInt_t          run;
    UInt_t          lumi;
    ULong64_t       event;
@@ -176,8 +165,6 @@ class NtupleVariables : public TSelector {
    Float_t         event_BeamSpot_z;
    Float_t         event_rho;
    Float_t         mass;
-   Int_t           mcTrue;
-   Float_t         mcMass;
    Float_t         tag_Ele_abseta;
    Float_t         tag_Ele_e;
    Float_t         tag_Ele_et;
@@ -330,9 +317,6 @@ class NtupleVariables : public TSelector {
    TBranch        *b_passingTightIP3D;   //!
    TBranch        *b_passingVeto80X;   //!
    TBranch        *b_passingVeto94X;   //!
-   TBranch        *b_weight;   //!
-   TBranch        *b_totWeight;   //!
-   TBranch        *b_PUweight;   //!
    TBranch        *b_run;   //!
    TBranch        *b_lumi;   //!
    TBranch        *b_event;   //!
@@ -350,8 +334,6 @@ class NtupleVariables : public TSelector {
    TBranch        *b_mBSz;   //!
    TBranch        *b_rho;   //!
    TBranch        *b_mass;   //!
-   TBranch        *b_mcTrue;   //!
-   TBranch        *b_mcMass;   //!
    TBranch        *b_tag_Ele_abseta;   //!
    TBranch        *b_tag_Ele_e;   //!
    TBranch        *b_tag_Ele_et;   //!
@@ -376,36 +358,74 @@ class NtupleVariables : public TSelector {
    TBranch        *b_pair_eta;   //!
    TBranch        *b_pair_mass;   //!
    TBranch        *b_pair_pt;   //!
-   
- NtupleVariables(TTree * /*tree*/ =0) : fChain(0) { }
-   ~NtupleVariables() { }
-   void    Init(TTree *tree, string);
-   Bool_t  Notify();
-   Int_t   GetEntry(Long64_t entry, Int_t getall = 0) { return fChain ? fChain->GetTree()->GetEntry(entry, getall) : 0; }
-   double  DeltaPhi(double, double);
-   double  DeltaR(double eta1, double phi1, double eta2, double phi2);
-   void    sortTLorVec(vector<TLorentzVector> *);   
+
+   data(TTree *tree=0);
+   virtual ~data();
+   virtual Int_t    Cut(Long64_t entry);
+   virtual Int_t    GetEntry(Long64_t entry);
+   virtual Long64_t LoadTree(Long64_t entry);
+   virtual void     Init(TTree *tree);
+   virtual void     Loop();
+   virtual Bool_t   Notify();
+   virtual void     Show(Long64_t entry = -1);
 };
 
 #endif
-#ifdef NtupleVariables_cxx
-void NtupleVariables::Init(TTree *tree, string nameData)
-{
-  // The Init() function is called when the selector needs to initialize
-  // a new tree or chain. Typically here the branch addresses and branch
-  // pointers of the tree will be set.
-  // It is normally not necessary to make changes to the generated
-  // code, but the routine can be extended by the user if needed.
-  // Init() will be called many times when running on PROOF
-  // (once per file to be processed).
-  // Set branch addresses and branch pointers
-  if (!tree) return;
-  fChain = tree;
-  fCurrent = -1;
-  fChain->SetMakeClass(1);
 
-   // Set object pointer
-  if (!tree) return;
+#ifdef data_cxx
+data::data(TTree *tree) : fChain(0) 
+{
+// if parameter tree is not specified (or zero), connect the file
+// used to generate this class and read the Tree.
+   if (tree == 0) {
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/data/SingleElectron/crab_17Nov2017_RunB/180130_234739/0000/TnPTree_data_1.root");
+      if (!f || !f->IsOpen()) {
+         f = new TFile("/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/data/SingleElectron/crab_17Nov2017_RunB/180130_234739/0000/TnPTree_data_1.root");
+      }
+      TDirectory * dir = (TDirectory*)f->Get("/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01302018/Moriond18_V1/data/SingleElectron/crab_17Nov2017_RunB/180130_234739/0000/TnPTree_data_1.root:/tnpEleIDs");
+      dir->GetObject("fitter_tree",tree);
+
+   }
+   Init(tree);
+}
+
+data::~data()
+{
+   if (!fChain) return;
+   delete fChain->GetCurrentFile();
+}
+
+Int_t data::GetEntry(Long64_t entry)
+{
+// Read contents of entry.
+   if (!fChain) return 0;
+   return fChain->GetEntry(entry);
+}
+Long64_t data::LoadTree(Long64_t entry)
+{
+// Set the environment to read one entry
+   if (!fChain) return -5;
+   Long64_t centry = fChain->LoadTree(entry);
+   if (centry < 0) return centry;
+   if (fChain->GetTreeNumber() != fCurrent) {
+      fCurrent = fChain->GetTreeNumber();
+      Notify();
+   }
+   return centry;
+}
+
+void data::Init(TTree *tree)
+{
+   // The Init() function is called when the selector needs to initialize
+   // a new tree or chain. Typically here the branch addresses and branch
+   // pointers of the tree will be set.
+   // It is normally not necessary to make changes to the generated
+   // code, but the routine can be extended by the user if needed.
+   // Init() will be called many times when running on PROOF
+   // (once per file to be processed).
+
+   // Set branch addresses and branch pointers
+   if (!tree) return;
    fChain = tree;
    fCurrent = -1;
    fChain->SetMakeClass(1);
@@ -536,9 +556,6 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("passingTightIP3D", &passingTightIP3D, &b_passingTightIP3D);
    fChain->SetBranchAddress("passingVeto80X", &passingVeto80X, &b_passingVeto80X);
    fChain->SetBranchAddress("passingVeto94X", &passingVeto94X, &b_passingVeto94X);
-   fChain->SetBranchAddress("weight", &weight, &b_weight);
-   fChain->SetBranchAddress("totWeight", &totWeight, &b_totWeight);
-   fChain->SetBranchAddress("PUweight", &PUweight, &b_PUweight);
    fChain->SetBranchAddress("run", &run, &b_run);
    fChain->SetBranchAddress("lumi", &lumi, &b_lumi);
    fChain->SetBranchAddress("event", &event, &b_event);
@@ -556,8 +573,6 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("event_BeamSpot_z", &event_BeamSpot_z, &b_mBSz);
    fChain->SetBranchAddress("event_rho", &event_rho, &b_rho);
    fChain->SetBranchAddress("mass", &mass, &b_mass);
-   fChain->SetBranchAddress("mcTrue", &mcTrue, &b_mcTrue);
-   fChain->SetBranchAddress("mcMass", &mcMass, &b_mcMass);
    fChain->SetBranchAddress("tag_Ele_abseta", &tag_Ele_abseta, &b_tag_Ele_abseta);
    fChain->SetBranchAddress("tag_Ele_e", &tag_Ele_e, &b_tag_Ele_e);
    fChain->SetBranchAddress("tag_Ele_et", &tag_Ele_et, &b_tag_Ele_et);
@@ -585,7 +600,7 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    Notify();
 }
 
-Bool_t NtupleVariables::Notify()
+Bool_t data::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -596,4 +611,18 @@ Bool_t NtupleVariables::Notify()
    return kTRUE;
 }
 
-#endif // #ifdef temp_cxx
+void data::Show(Long64_t entry)
+{
+// Print contents of entry.
+// If entry is not specified, print current entry
+   if (!fChain) return;
+   fChain->Show(entry);
+}
+Int_t data::Cut(Long64_t entry)
+{
+// This function may be called from Loop.
+// returns  1 if entry is accepted.
+// returns -1 otherwise.
+   return 1;
+}
+#endif // #ifdef data_cxx
