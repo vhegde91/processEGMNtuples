@@ -48,10 +48,10 @@ void GetEfficiency(){
 
   f[0] = new TFile("a.root");
   for(int i=0;i<nfiles;i++){
-    histName1.push_back("prbPt_Medium80X");
-    histName2.push_back("prbPt");
-    histName1.push_back("prbPt_Medium94X");
-    histName2.push_back("prbPt");
+    histName1.push_back("prbPt_EB_Loose80X");
+    histName2.push_back("prbPt_EB");
+    histName1.push_back("prbPt_EB_Loose94X");
+    histName2.push_back("prbPt_EB");
   }
 
   rebin=1;

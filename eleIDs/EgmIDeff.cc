@@ -40,7 +40,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
   int decade = 0;
 
   TString s_data=data;
-  bool mcSample=true, mcTruth=true, do_fakes=false;
+  bool mcSample=true, mcTruth=true, do_fakes=1;
   if(s_data.Contains("Data") || s_data.Contains("Run201") || s_data.Contains("data")) mcSample=false;    
   Long64_t evtSurvived=0;
   double wt=0;
