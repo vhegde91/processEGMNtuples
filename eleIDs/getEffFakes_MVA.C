@@ -48,10 +48,14 @@ void getEffFakes_MVA(){
   textOnTop.SetTextSize(0.04);
   intLumiE.SetTextSize(0.04);
   sprintf(name2,"#bf{(13TeV)}");
-  vector<TString> idNames    = {"MVAWP80",   "MVAWP90",   "LeptonMvaM","LeptonMvaVT","LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04",
-  				"LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
-  vector<TString> refIdNames = {"MVA80Xwp80","MVA80Xwp90","LeptonMvaM","LeptonMvaVT","LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04",
-  				"LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
+
+  vector<TString> idNames    = {"MVAWP80",   "MVAWP90",   "LeptonMvaM","LeptonMvaVT",
+				"MVA94Xwp80iso","MVA94Xwp80noiso","MVA94Xwp90iso","MVA94Xwp90noiso",
+				"LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
+
+  vector<TString> refIdNames = {"MVA80Xwp80","MVA80Xwp90","LeptonMvaM","LeptonMvaVT",
+				"MVA94Xwp80iso","MVA94Xwp80noiso","MVA94Xwp90iso","MVA94Xwp90noiso",
+				"LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
 
   // vector<TString> idNames    = {"MVAWP80"};
   // vector<TString> refIdNames = {"MVA80Xwp80"};
@@ -63,8 +67,8 @@ void getEffFakes_MVA(){
   TCanvas *cA[idNames.size()];
   TH1D *h_Num, *h_Den;  
 
-  f[0] = new TFile("mc_eff.root");
-  f[1] = new TFile("mc_fake.root");
+  f[0] = new TFile("mc_eff_all.root");
+  f[1] = new TFile("mc_fake_all.root");
   
   bool hasOldID = true;
 
@@ -77,7 +81,7 @@ void getEffFakes_MVA(){
       name = idNames[i]+"_"+refIdNames[i];
       hasOldID = true;
     }
-    cA[i] = new TCanvas(name,name,1500,500);
+    cA[i] = new TCanvas(name,name,1400,450);
     cA[i]->Divide(3,1);
 
     for(int p=0;p<nfiles;p++){
@@ -161,8 +165,13 @@ void getEffFakes_MVA(){
 	//    legend[i] = new TLegend(0.15,0.9,0.85,0.8)    legend[i]->SetNColumns(2);
 	legend[i]->SetTextSize(0.05);
 	legend[i]->SetBorderSize(0);
+
 	if(hasOldID) legend[i]->AddEntry(h_grRef[i],refIdNames[i],"lpe");
 	legend[i]->AddEntry(h_gr[i],idNames[i],"lpe");
+	// if(hasOldID) legend[i]->AddEntry(h_grRef[i],refIdNames[i],"lpe");
+	// else legend[i]->AddEntry(h_gr[i],"Eff","lpe");
+	// legend[i]->AddEntry(h_gr[i],idNames[i],"lpe");
+
 	cA[i]->cd(1);
 	legend[i]->Draw();
 	textOnTop.DrawLatexNDC(0.12,0.91,cmsName); 	intLumiE.DrawLatexNDC(0.75,0.91,name2);

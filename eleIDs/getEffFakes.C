@@ -58,8 +58,8 @@ void getEffFakes(){
   TCanvas *cA[idNames.size()];
   TH1D *h_Num, *h_Den;  
 
-  f[0] = new TFile("mc_eff.root");
-  f[1] = new TFile("mc_fake.root");
+  f[0] = new TFile("mc_eff_all.root");
+  f[1] = new TFile("mc_fake_all.root");
   int p=0;
 
   for(int i=0;i<idNames.size();i++){

@@ -40,7 +40,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
   int decade = 0;
 
   TString s_data=data;
-  bool mcSample=true, mcTruth=true, do_fakes=1;
+  bool mcSample=true, mcTruth=true, do_fakes=0;
   if(s_data.Contains("Data") || s_data.Contains("Run201") || s_data.Contains("data")) mcSample=false;    
   Long64_t evtSurvived=0;
   double wt=0;
@@ -73,6 +73,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
     if(mcSample){
       if(do_fakes && mcTrue) continue;
       if(!do_fakes && !mcTrue) continue;
+      if(abs(el_eta) > 2.5) continue;
       mcTruth = mcTrue;
       h_prbPtmc->Fill(mc_probe_et,wt);
       h2_mcTrueVsdR->Fill(mcTrue,DeltaR(mc_probe_eta,mc_probe_phi, el_eta,el_phi), weight);
@@ -150,6 +151,12 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVAWP90)      h_prbPt_Eta1_MVAWP90->Fill(el_pt,wt);
       if(passingLeptonMvaM)   h_prbPt_Eta1_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta1_LeptonMvaVT->Fill(el_pt,wt);
+
+      if(passingMVA94Xwp80iso)   h_prbPt_Eta1_MVA94Xwp80iso->Fill(el_pt,wt);
+      if(passingMVA94Xwp80noiso) h_prbPt_Eta1_MVA94Xwp80noiso->Fill(el_pt,wt);
+      if(passingMVA94Xwp90iso)   h_prbPt_Eta1_MVA94Xwp90iso->Fill(el_pt,wt);
+      if(passingMVA94Xwp90noiso) h_prbPt_Eta1_MVA94Xwp90noiso->Fill(el_pt,wt);
+
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
       if(passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04)  h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
     }
@@ -159,6 +166,12 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVA80Xwp90)   h_prbPt_Eta2_MVA80Xwp90->Fill(el_pt,wt);
       if(passingMVAWP80)      h_prbPt_Eta2_MVAWP80->Fill(el_pt,wt);
       if(passingMVAWP90)      h_prbPt_Eta2_MVAWP90->Fill(el_pt,wt);
+
+      if(passingMVA94Xwp80iso)   h_prbPt_Eta2_MVA94Xwp80iso->Fill(el_pt,wt);
+      if(passingMVA94Xwp80noiso) h_prbPt_Eta2_MVA94Xwp80noiso->Fill(el_pt,wt);
+      if(passingMVA94Xwp90iso)   h_prbPt_Eta2_MVA94Xwp90iso->Fill(el_pt,wt);
+      if(passingMVA94Xwp90noiso) h_prbPt_Eta2_MVA94Xwp90noiso->Fill(el_pt,wt);
+
       if(passingLeptonMvaM)   h_prbPt_Eta2_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta2_LeptonMvaVT->Fill(el_pt,wt);
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
@@ -170,6 +183,12 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVA80Xwp90)   h_prbPt_Eta3_MVA80Xwp90->Fill(el_pt,wt);
       if(passingMVAWP80)      h_prbPt_Eta3_MVAWP80->Fill(el_pt,wt);
       if(passingMVAWP90)      h_prbPt_Eta3_MVAWP90->Fill(el_pt,wt);
+
+      if(passingMVA94Xwp80iso)   h_prbPt_Eta3_MVA94Xwp80iso->Fill(el_pt,wt);
+      if(passingMVA94Xwp80noiso) h_prbPt_Eta3_MVA94Xwp80noiso->Fill(el_pt,wt);
+      if(passingMVA94Xwp90iso)   h_prbPt_Eta3_MVA94Xwp90iso->Fill(el_pt,wt);
+      if(passingMVA94Xwp90noiso) h_prbPt_Eta3_MVA94Xwp90noiso->Fill(el_pt,wt);
+
       if(passingLeptonMvaM)   h_prbPt_Eta3_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta3_LeptonMvaVT->Fill(el_pt,wt);
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta3_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
