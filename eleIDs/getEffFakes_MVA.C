@@ -25,7 +25,7 @@ using namespace std;
 void setLastBinAsOverFlow(TH1D*);
 void nameLegend2(const char*);
 void setGraphProp(TGraphAsymmErrors*, int);
-bool savePlots=1;
+bool savePlots=0;
 vector<TString> legName;
 vector<TString> histNameNum,histName2;
 TLatex textOnTop,intLumiE;
@@ -49,16 +49,10 @@ void getEffFakes_MVA(){
   intLumiE.SetTextSize(0.04);
   sprintf(name2,"#bf{(13TeV)}");
 
-  vector<TString> idNames    = {"MVAWP80",   "MVAWP90",   "LeptonMvaM","LeptonMvaVT",
-				"MVA94Xwp80iso","MVA94Xwp80noiso","MVA94Xwp90iso","MVA94Xwp90noiso",
-				"LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
-
-  vector<TString> refIdNames = {"MVA80Xwp80","MVA80Xwp90","LeptonMvaM","LeptonMvaVT",
-				"MVA94Xwp80iso","MVA94Xwp80noiso","MVA94Xwp90iso","MVA94Xwp90noiso",
-				"LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
-
-  // vector<TString> idNames    = {"MVAWP80"};
-  // vector<TString> refIdNames = {"MVA80Xwp80"};
+  // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp90noiso"};
+  // vector<TString> refIdNames = {"MVA80Xwp80","MVA94Xwp80iso","MVA80Xwp90","MVA94Xwp90iso"};
+  vector<TString> idNames    = {"MVAVLoose","MVAVLoose","MVAVLooseFO","MVAVLooseFO","MVATight","MVATight"};
+  vector<TString> refIdNames = {"MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp80noiso","MVA94Xwp90noiso"};
 
   TH1D *h_num[2*3*idNames.size()], *h_den[2*3*idNames.size()];
   TGraphAsymmErrors *h_grRef[3*idNames.size()], *h_gr[3*idNames.size()];
@@ -69,7 +63,8 @@ void getEffFakes_MVA(){
 
   f[0] = new TFile("mc_eff_all.root");
   f[1] = new TFile("mc_fake_all.root");
-  
+  // f[0] = new TFile("a.root");  
+  // f[1] = new TFile("b.root");
   bool hasOldID = true;
 
   for(int i=0;i<idNames.size();i++){

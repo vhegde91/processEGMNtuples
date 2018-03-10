@@ -40,7 +40,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
   int decade = 0;
 
   TString s_data=data;
-  bool mcSample=true, mcTruth=true, do_fakes=0;
+  bool mcSample=true, mcTruth=true, do_fakes=1;
   if(s_data.Contains("Data") || s_data.Contains("Run201") || s_data.Contains("data")) mcSample=false;    
   Long64_t evtSurvived=0;
   double wt=0;
@@ -68,7 +68,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
     wt = 1;
     if(wt!=1) cout<<wt<<" ";
     // if(mcTrue!=mc_probe_flag)
-    //   printInfo(jentry);
+    // printInfo(jentry);
     h_ZMass->Fill(pair_mass,wt);
     if(mcSample){
       if(do_fakes && mcTrue) continue;
@@ -147,52 +147,89 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       h_prbPt_Eta1->Fill(el_pt,wt);
       if(passingMVA80Xwp80)   h_prbPt_Eta1_MVA80Xwp80->Fill(el_pt,wt);
       if(passingMVA80Xwp90)   h_prbPt_Eta1_MVA80Xwp90->Fill(el_pt,wt);
-      if(passingMVAWP80)      h_prbPt_Eta1_MVAWP80->Fill(el_pt,wt);
-      if(passingMVAWP90)      h_prbPt_Eta1_MVAWP90->Fill(el_pt,wt);
-      if(passingLeptonMvaM)   h_prbPt_Eta1_LeptonMvaM->Fill(el_pt,wt);
-      if(passingLeptonMvaVT)  h_prbPt_Eta1_LeptonMvaVT->Fill(el_pt,wt);
+      // if(passingMVAWP80)      h_prbPt_Eta1_MVAWP80->Fill(el_pt,wt);
+      // if(passingMVAWP90)      h_prbPt_Eta1_MVAWP90->Fill(el_pt,wt);
 
       if(passingMVA94Xwp80iso)   h_prbPt_Eta1_MVA94Xwp80iso->Fill(el_pt,wt);
       if(passingMVA94Xwp80noiso) h_prbPt_Eta1_MVA94Xwp80noiso->Fill(el_pt,wt);
       if(passingMVA94Xwp90iso)   h_prbPt_Eta1_MVA94Xwp90iso->Fill(el_pt,wt);
       if(passingMVA94Xwp90noiso) h_prbPt_Eta1_MVA94Xwp90noiso->Fill(el_pt,wt);
 
+      if(passingMVAVLoose)     h_prbPt_Eta1_passingMVAVLoose->Fill(el_pt,wt);
+      if(passingMVAVLooseFO)   h_prbPt_Eta1_passingMVAVLooseFO->Fill(el_pt,wt);
+      if(passingMVATight)      h_prbPt_Eta1_passingMVATight->Fill(el_pt,wt);
+
+      if(passingMVAVLooseMini)    h_prbPt_Eta1_passingMVAVLooseMini->Fill(el_pt,wt);
+      if(passingMVAVLooseMini2)   h_prbPt_Eta1_passingMVAVLooseMini2->Fill(el_pt,wt);
+      if(passingMVAVLooseMini4)   h_prbPt_Eta1_passingMVAVLooseMini4->Fill(el_pt,wt);
+
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
-      if(passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04)  h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
+      if(passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04)  h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);      
+      if(passingLeptonMvaM)   h_prbPt_Eta1_LeptonMvaM->Fill(el_pt,wt);
+      if(passingLeptonMvaVT)  h_prbPt_Eta1_LeptonMvaVT->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.50)   h_prbPt_Eta1_LeptonMvaM->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.75)   h_prbPt_Eta1_LeptonMvaVT->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.50)   h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.75)   h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
     }
     else if(abs(el_eta) >= 0.8 && abs(el_eta) < 1.479){
       h_prbPt_Eta2->Fill(el_pt,wt);
       if(passingMVA80Xwp80)   h_prbPt_Eta2_MVA80Xwp80->Fill(el_pt,wt);
       if(passingMVA80Xwp90)   h_prbPt_Eta2_MVA80Xwp90->Fill(el_pt,wt);
-      if(passingMVAWP80)      h_prbPt_Eta2_MVAWP80->Fill(el_pt,wt);
-      if(passingMVAWP90)      h_prbPt_Eta2_MVAWP90->Fill(el_pt,wt);
+      // if(passingMVAWP80)      h_prbPt_Eta2_MVAWP80->Fill(el_pt,wt);
+      // if(passingMVAWP90)      h_prbPt_Eta2_MVAWP90->Fill(el_pt,wt);
 
       if(passingMVA94Xwp80iso)   h_prbPt_Eta2_MVA94Xwp80iso->Fill(el_pt,wt);
       if(passingMVA94Xwp80noiso) h_prbPt_Eta2_MVA94Xwp80noiso->Fill(el_pt,wt);
       if(passingMVA94Xwp90iso)   h_prbPt_Eta2_MVA94Xwp90iso->Fill(el_pt,wt);
       if(passingMVA94Xwp90noiso) h_prbPt_Eta2_MVA94Xwp90noiso->Fill(el_pt,wt);
 
+      if(passingMVAVLoose)     h_prbPt_Eta2_passingMVAVLoose->Fill(el_pt,wt);
+      if(passingMVAVLooseFO)   h_prbPt_Eta2_passingMVAVLooseFO->Fill(el_pt,wt);
+      if(passingMVATight)      h_prbPt_Eta2_passingMVATight->Fill(el_pt,wt);
+
+      if(passingMVAVLooseMini)    h_prbPt_Eta2_passingMVAVLooseMini->Fill(el_pt,wt);
+      if(passingMVAVLooseMini2)   h_prbPt_Eta2_passingMVAVLooseMini2->Fill(el_pt,wt);
+      if(passingMVAVLooseMini4)   h_prbPt_Eta2_passingMVAVLooseMini4->Fill(el_pt,wt);
+
       if(passingLeptonMvaM)   h_prbPt_Eta2_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta2_LeptonMvaVT->Fill(el_pt,wt);
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
       if(passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04)  h_prbPt_Eta2_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
+      
+      // if(el_MVATTH > 0.50)   h_prbPt_Eta2_LeptonMvaM->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.75)   h_prbPt_Eta2_LeptonMvaVT->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.50)   h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.75)   h_prbPt_Eta2_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
     }
     else if(abs(el_eta) >= 1.479 && abs(el_eta) < 2.4){
       h_prbPt_Eta3->Fill(el_pt,wt);
       if(passingMVA80Xwp80)   h_prbPt_Eta3_MVA80Xwp80->Fill(el_pt,wt);
       if(passingMVA80Xwp90)   h_prbPt_Eta3_MVA80Xwp90->Fill(el_pt,wt);
-      if(passingMVAWP80)      h_prbPt_Eta3_MVAWP80->Fill(el_pt,wt);
-      if(passingMVAWP90)      h_prbPt_Eta3_MVAWP90->Fill(el_pt,wt);
+      // if(passingMVAWP80)      h_prbPt_Eta3_MVAWP80->Fill(el_pt,wt);
+      // if(passingMVAWP90)      h_prbPt_Eta3_MVAWP90->Fill(el_pt,wt);
 
       if(passingMVA94Xwp80iso)   h_prbPt_Eta3_MVA94Xwp80iso->Fill(el_pt,wt);
       if(passingMVA94Xwp80noiso) h_prbPt_Eta3_MVA94Xwp80noiso->Fill(el_pt,wt);
       if(passingMVA94Xwp90iso)   h_prbPt_Eta3_MVA94Xwp90iso->Fill(el_pt,wt);
       if(passingMVA94Xwp90noiso) h_prbPt_Eta3_MVA94Xwp90noiso->Fill(el_pt,wt);
 
+      if(passingMVAVLoose)     h_prbPt_Eta3_passingMVAVLoose->Fill(el_pt,wt);
+      if(passingMVAVLooseFO)   h_prbPt_Eta3_passingMVAVLooseFO->Fill(el_pt,wt);
+      if(passingMVATight)      h_prbPt_Eta3_passingMVATight->Fill(el_pt,wt);
+
+      if(passingMVAVLooseMini)    h_prbPt_Eta3_passingMVAVLooseMini->Fill(el_pt,wt);
+      if(passingMVAVLooseMini2)   h_prbPt_Eta3_passingMVAVLooseMini2->Fill(el_pt,wt);
+      if(passingMVAVLooseMini4)   h_prbPt_Eta3_passingMVAVLooseMini4->Fill(el_pt,wt);
+
       if(passingLeptonMvaM)   h_prbPt_Eta3_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta3_LeptonMvaVT->Fill(el_pt,wt);
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta3_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
       if(passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04)  h_prbPt_Eta3_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.50)   h_prbPt_Eta3_LeptonMvaM->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.75)   h_prbPt_Eta3_LeptonMvaVT->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.50)   h_prbPt_Eta3_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
+      // if(el_MVATTH > 0.75)   h_prbPt_Eta3_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
     }
     
     evtSurvived++;
@@ -207,5 +244,7 @@ void EgmIDeff::printInfo(Long64_t jentry){
   cout<<"tag_Ele_pt: "<<tag_Ele_pt<<" tag_Ele_eta: "<<tag_Ele_eta<<" tag_Ele_phi: "<<tag_Ele_phi<<" tag_Ele_e: "<<tag_Ele_e<<endl;
   cout<<"mc_probe_flag "<<mc_probe_flag<<" mc_probe_et: "<<mc_probe_et<<" mc_probe_eta: "<<mc_probe_eta<<" mc_probe_phi: "<<mc_probe_phi<<" mc_probe_e: "<<mc_probe_e<<endl;
   cout<<endl;
-  cout<<"mcTrue: "<<mcTrue<<" mcMass: "<<mcMass<<" pair_mass: "<<pair_mass<<" mass: "<<mass<<endl;  
+  cout<<"mcTrue: "<<mcTrue<<" mcMass: "<<mcMass<<" pair_mass: "<<pair_mass<<" mass: "<<mass<<endl;
+  cout<<"el_MVATTH:"<<el_MVATTH<<" el_hzzMVA80X:"<<el_hzzMVA80X<<" el_nonTrigMVA:"<<el_nonTrigMVA<<" el_nonTrigMVA80X:"<<el_nonTrigMVA80X<<endl;
+  cout<<"passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04: "<<passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04<<endl;
 }

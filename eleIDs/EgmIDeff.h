@@ -95,6 +95,14 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta1_MVA94Xwp90iso;
   TH1D *h_prbPt_Eta1_MVA94Xwp90noiso;
 
+  TH1D *h_prbPt_Eta1_passingMVAVLoose;
+  TH1D *h_prbPt_Eta1_passingMVAVLooseFO;
+  TH1D *h_prbPt_Eta1_passingMVATight;
+  
+  TH1D *h_prbPt_Eta1_passingMVAVLooseMini;
+  TH1D *h_prbPt_Eta1_passingMVAVLooseMini2;
+  TH1D *h_prbPt_Eta1_passingMVAVLooseMini4;
+
   TH1D *h_prbPt_Eta1_LeptonMvaM;
   TH1D *h_prbPt_Eta1_LeptonMvaVT;
   TH1D *h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04;
@@ -110,6 +118,14 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta2_MVA94Xwp90iso;
   TH1D *h_prbPt_Eta2_MVA94Xwp90noiso;
 
+  TH1D *h_prbPt_Eta2_passingMVAVLoose;
+  TH1D *h_prbPt_Eta2_passingMVAVLooseFO;
+  TH1D *h_prbPt_Eta2_passingMVATight;
+  
+  TH1D *h_prbPt_Eta2_passingMVAVLooseMini;
+  TH1D *h_prbPt_Eta2_passingMVAVLooseMini2;
+  TH1D *h_prbPt_Eta2_passingMVAVLooseMini4;
+
   TH1D *h_prbPt_Eta2_LeptonMvaM;
   TH1D *h_prbPt_Eta2_LeptonMvaVT;
   TH1D *h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04;
@@ -124,6 +140,14 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta3_MVA94Xwp80noiso;
   TH1D *h_prbPt_Eta3_MVA94Xwp90iso;
   TH1D *h_prbPt_Eta3_MVA94Xwp90noiso;
+
+  TH1D *h_prbPt_Eta3_passingMVAVLoose;
+  TH1D *h_prbPt_Eta3_passingMVAVLooseFO;
+  TH1D *h_prbPt_Eta3_passingMVATight;
+  
+  TH1D *h_prbPt_Eta3_passingMVAVLooseMini;
+  TH1D *h_prbPt_Eta3_passingMVAVLooseMini2;
+  TH1D *h_prbPt_Eta3_passingMVAVLooseMini4;
 
   TH1D *h_prbPt_Eta3_LeptonMvaM;
   TH1D *h_prbPt_Eta3_LeptonMvaVT;
@@ -225,6 +249,14 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta1_MVA94Xwp90iso = new TH1D("prbPt_Eta1_MVA94Xwp90iso","Pt of the probe, |#eta| < 0.8, passing MVA94Xwp90iso",19,10,200);
   h_prbPt_Eta1_MVA94Xwp90noiso = new TH1D("prbPt_Eta1_MVA94Xwp90noiso","Pt of the probe, |#eta| < 0.8, passing MVA94Xwp90noiso",19,10,200);
 
+  h_prbPt_Eta1_passingMVAVLoose = new TH1D("prbPt_Eta1_MVAVLoose","Pt of the probe, |#eta| < 0.8, passingMVAVLoose",19,10,200);
+  h_prbPt_Eta1_passingMVAVLooseFO = new TH1D("prbPt_Eta1_MVAVLooseFO","Pt of the probe, |#eta| < 0.8, passingMVAVLooseFO",19,10,200);
+  h_prbPt_Eta1_passingMVATight = new TH1D("prbPt_Eta1_MVATight","Pt of the probe, |#eta| < 0.8, passingMVATight",19,10,200);
+  
+  h_prbPt_Eta1_passingMVAVLooseMini = new TH1D("prbPt_Eta1_MVAVLooseMini","Pt of the probe, |#eta| < 0.8, passingMVAVLooseMini",19,10,200);
+  h_prbPt_Eta1_passingMVAVLooseMini2 = new TH1D("prbPt_Eta1_MVAVLooseMini2","Pt of the probe, |#eta| < 0.8, passingMVAVLooseMini2",19,10,200);
+  h_prbPt_Eta1_passingMVAVLooseMini4 = new TH1D("prbPt_Eta1_MVAVLooseMini4","Pt of the probe, |#eta| < 0.8, passingMVAVLooseMini4",19,10,200);
+
   h_prbPt_Eta1_LeptonMvaM = new TH1D("prbPt_Eta1_LeptonMvaM","Pt of the probe, |#eta| < 0.8, passing LeptonMvaM",19,10,200);
   h_prbPt_Eta1_LeptonMvaVT = new TH1D("prbPt_Eta1_LeptonMvaVT","Pt of the probe, |#eta| < 0.8, passing LeptonMvaVT",19,10,200);
   h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04 = new TH1D("prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","Pt of the probe, |#eta| < 0.8, passing LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04",19,10,200);
@@ -240,6 +272,14 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta2_MVA94Xwp90iso = new TH1D("prbPt_Eta2_MVA94Xwp90iso","Pt of the probe, 0.8 #leq |#eta| < 1.479, MVA94Xwp90iso",19,10,200);
   h_prbPt_Eta2_MVA94Xwp90noiso = new TH1D("prbPt_Eta2_MVA94Xwp90noiso","Pt of the probe, 0.8 #leq |#eta| < 1.479, MVA94Xwp90noiso",19,10,200);
 
+  h_prbPt_Eta2_passingMVAVLoose = new TH1D("prbPt_Eta2_MVAVLoose","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLoose",19,10,200);
+  h_prbPt_Eta2_passingMVAVLooseFO = new TH1D("prbPt_Eta2_MVAVLooseFO","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLooseFO",19,10,200);
+  h_prbPt_Eta2_passingMVATight = new TH1D("prbPt_Eta2_MVATight","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVATight",19,10,200);
+  
+  h_prbPt_Eta2_passingMVAVLooseMini = new TH1D("prbPt_Eta2_MVAVLooseMini","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLooseMini",19,10,200);
+  h_prbPt_Eta2_passingMVAVLooseMini2 = new TH1D("prbPt_Eta2_MVAVLooseMini2","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLooseMini2",19,10,200);
+  h_prbPt_Eta2_passingMVAVLooseMini4 = new TH1D("prbPt_Eta2_MVAVLooseMini4","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLooseMini4",19,10,200);
+
   h_prbPt_Eta2_LeptonMvaM = new TH1D("prbPt_Eta2_LeptonMvaM","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing LeptonMvaM",19,10,200);
   h_prbPt_Eta2_LeptonMvaVT = new TH1D("prbPt_Eta2_LeptonMvaVT","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing LeptonMvaVT",19,10,200);
   h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04 = new TH1D("prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04",19,10,200);
@@ -254,6 +294,14 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta3_MVA94Xwp80noiso = new TH1D("prbPt_Eta3_MVA94Xwp80noiso","Pt of the probe, 1.479 #leq |#eta| < 2.5, MVA94Xwp80noiso",19,10,200);
   h_prbPt_Eta3_MVA94Xwp90iso = new TH1D("prbPt_Eta3_MVA94Xwp90iso","Pt of the probe, 1.479 #leq |#eta| < 2.5, MVA94Xwp90iso",19,10,200);
   h_prbPt_Eta3_MVA94Xwp90noiso = new TH1D("prbPt_Eta3_MVA94Xwp90noiso","Pt of the probe, 1.479 #leq |#eta| < 2.5, MVA94Xwp90noiso",19,10,200);
+
+  h_prbPt_Eta3_passingMVAVLoose = new TH1D("prbPt_Eta3_MVAVLoose","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLoose",19,10,200);
+  h_prbPt_Eta3_passingMVAVLooseFO = new TH1D("prbPt_Eta3_MVAVLooseFO","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLooseFO",19,10,200);
+  h_prbPt_Eta3_passingMVATight = new TH1D("prbPt_Eta3_MVATight","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVATight",19,10,200);
+  
+  h_prbPt_Eta3_passingMVAVLooseMini = new TH1D("prbPt_Eta3_MVAVLooseMini","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLooseMini",19,10,200);
+  h_prbPt_Eta3_passingMVAVLooseMini2 = new TH1D("prbPt_Eta3_MVAVLooseMini2","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLooseMini2",19,10,200);
+  h_prbPt_Eta3_passingMVAVLooseMini4 = new TH1D("prbPt_Eta3_MVAVLooseMini4","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLooseMini4",19,10,200);
 
   h_prbPt_Eta3_LeptonMvaM = new TH1D("prbPt_Eta3_LeptonMvaM","Pt of the probe, 1.479 #leq |#eta| < 2.5, passing LeptonMvaM",19,10,200);
   h_prbPt_Eta3_LeptonMvaVT = new TH1D("prbPt_Eta3_LeptonMvaVT","Pt of the probe, 1.479 #leq |#eta| < 2.5, passing LeptonMvaVT",19,10,200);
