@@ -25,7 +25,7 @@ using namespace std;
 void setLastBinAsOverFlow(TH1D*);
 void nameLegend2(const char*);
 void setGraphProp(TGraphAsymmErrors*, int);
-bool savePlots=0;
+bool savePlots=1;
 vector<TString> legName;
 vector<TString> histNameNum,histName2;
 TLatex textOnTop,intLumiE;
@@ -41,6 +41,7 @@ void getEffFakes_MVA(){
 
   int nfiles=2;
   TFile *f[nfiles];
+  bool logY = 1;
   TString name="EGMid";
   xAxisLabel="pT(GeV)";
   char name2[100];
@@ -49,10 +50,13 @@ void getEffFakes_MVA(){
   intLumiE.SetTextSize(0.04);
   sprintf(name2,"#bf{(13TeV)}");
 
+  vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp90noiso"};
+  vector<TString> refIdNames = {"MVA94Xwp80iso","MVA94Xwp90iso"};
+
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA80Xwp80","MVA94Xwp80iso","MVA80Xwp90","MVA94Xwp90iso"};
-  vector<TString> idNames    = {"MVAVLoose","MVAVLoose","MVAVLooseFO","MVAVLooseFO","MVATight","MVATight"};
-  vector<TString> refIdNames = {"MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp80noiso","MVA94Xwp90noiso"};
+  // vector<TString> idNames    = {"MVAVLoose","MVAVLooseFO","MVATight"};
+  // vector<TString> refIdNames = {"MVA94Xwp98noiso","MVA94Xwp98noiso","MVA94Xwp98noiso"};
 
   TH1D *h_num[2*3*idNames.size()], *h_den[2*3*idNames.size()];
   TGraphAsymmErrors *h_grRef[3*idNames.size()], *h_gr[3*idNames.size()];
@@ -61,8 +65,11 @@ void getEffFakes_MVA(){
   TCanvas *cA[idNames.size()];
   TH1D *h_Num, *h_Den;  
 
-  f[0] = new TFile("mc_eff_all.root");
-  f[1] = new TFile("mc_fake_all.root");
+  f[0] = new TFile("mc_eff.root");//mc_eff_all.root");
+  f[1] = new TFile("mc_fake.root");//mc_fake_all.root");
+  //f[0] = new TFile("mc_eff_all.root");
+  //f[1] = new TFile("mc_fake_all.root");
+ 
   // f[0] = new TFile("a.root");  
   // f[1] = new TFile("b.root");
   bool hasOldID = true;
@@ -79,6 +86,12 @@ void getEffFakes_MVA(){
     cA[i] = new TCanvas(name,name,1400,450);
     cA[i]->Divide(3,1);
 
+    if(logY){
+      cA[i]->cd(1);gPad->SetLogy();
+      cA[i]->cd(2);gPad->SetLogy();
+      cA[i]->cd(3);gPad->SetLogy();
+    }
+    
     for(int p=0;p<nfiles;p++){
       //----------------for eta1------------------
       h_Num = (TH1D*)f[p]->Get("prbPt_Eta1_"+idNames[i]); setLastBinAsOverFlow(h_Num);
@@ -90,7 +103,7 @@ void getEffFakes_MVA(){
 	h_grRef[i] = new TGraphAsymmErrors(h_Num,h_Den);
       }
 
-      cA[i]->cd(1);
+      cA[i]->cd(1);cA[i]->SetLogy();
       if(hasOldID) setGraphProp(h_grRef[i],kBlue);
       setGraphProp(h_gr[i],kRed);
 
@@ -156,7 +169,9 @@ void getEffFakes_MVA(){
       //----------------------------------------
       if(p==0){
 	//legend[i] = new TLegend(0.25,0.35,0.55,0.5);
-	legend[i] = new TLegend(0.15,0.78,0.55,0.88);      
+	if(logY)  legend[i] = new TLegend(0.25,0.68,0.65,0.78); 
+	else
+	  legend[i] = new TLegend(0.15,0.78,0.55,0.88);      
 	//    legend[i] = new TLegend(0.15,0.9,0.85,0.8)    legend[i]->SetNColumns(2);
 	legend[i]->SetTextSize(0.05);
 	legend[i]->SetBorderSize(0);
@@ -187,7 +202,7 @@ void setGraphProp(TGraphAsymmErrors* h_gr, int col1){
   h_gr->SetMarkerColor(col1);
   h_gr->SetLineColor(col1);
   h_gr->SetLineWidth(2);
-  h_gr->SetMinimum(0.);
+  h_gr->SetMinimum(0.007);
   h_gr->SetMaximum(1.29);
   h_gr->SetTitle(0);
   h_gr->GetYaxis()->SetTitle("#varepsilon");

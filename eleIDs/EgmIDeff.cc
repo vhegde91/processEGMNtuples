@@ -40,7 +40,8 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
   int decade = 0;
 
   TString s_data=data;
-  bool mcSample=true, mcTruth=true, do_fakes=1;
+  bool mcSample=true, mcTruth=true, do_fakes=1, cutOnZmass = 0;
+  int fRunning = -1;
   if(s_data.Contains("Data") || s_data.Contains("Run201") || s_data.Contains("data")) mcSample=false;    
   Long64_t evtSurvived=0;
   double wt=0;
@@ -50,6 +51,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
     else cout<<"Calculating eff......................"<<endl;
   }
   else cout<<"Taking it as data..................."<<endl;
+  cout<<"Cutting on Z mass? "<<cutOnZmass<<endl;
 
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
@@ -64,12 +66,17 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
     nb = fChain->GetEntry(jentry);   nbytes += nb;
-
+    //    if(fCurrent != fRunning) {cout<<"Starting file "<<fCurrent<<endl; fRunning = fCurrent;}
     wt = 1;
     if(wt!=1) cout<<wt<<" ";
     // if(mcTrue!=mc_probe_flag)
     // printInfo(jentry);
     h_ZMass->Fill(pair_mass,wt);
+
+    if(cutOnZmass && (pair_mass < 86 || pair_mass > 96) ) continue;
+    if(mcTrue) h_ZMass_eff->Fill(pair_mass,wt);
+    else h_ZMass_fake->Fill(pair_mass,wt);
+
     if(mcSample){
       if(do_fakes && mcTrue) continue;
       if(!do_fakes && !mcTrue) continue;
@@ -159,6 +166,8 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVAVLooseFO)   h_prbPt_Eta1_passingMVAVLooseFO->Fill(el_pt,wt);
       if(passingMVATight)      h_prbPt_Eta1_passingMVATight->Fill(el_pt,wt);
 
+      if(el_MVA94Xnoiso > -0.856871961305474) h_prbPt_Eta1_MVA94Xwp98noiso->Fill(el_pt,wt);
+
       if(passingMVAVLooseMini)    h_prbPt_Eta1_passingMVAVLooseMini->Fill(el_pt,wt);
       if(passingMVAVLooseMini2)   h_prbPt_Eta1_passingMVAVLooseMini2->Fill(el_pt,wt);
       if(passingMVAVLooseMini4)   h_prbPt_Eta1_passingMVAVLooseMini4->Fill(el_pt,wt);
@@ -187,6 +196,8 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVAVLoose)     h_prbPt_Eta2_passingMVAVLoose->Fill(el_pt,wt);
       if(passingMVAVLooseFO)   h_prbPt_Eta2_passingMVAVLooseFO->Fill(el_pt,wt);
       if(passingMVATight)      h_prbPt_Eta2_passingMVATight->Fill(el_pt,wt);
+
+      if(el_MVA94Xnoiso > -0.8107642141584835) h_prbPt_Eta2_MVA94Xwp98noiso->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta2_passingMVAVLooseMini->Fill(el_pt,wt);
       if(passingMVAVLooseMini2)   h_prbPt_Eta2_passingMVAVLooseMini2->Fill(el_pt,wt);
@@ -217,6 +228,8 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVAVLoose)     h_prbPt_Eta3_passingMVAVLoose->Fill(el_pt,wt);
       if(passingMVAVLooseFO)   h_prbPt_Eta3_passingMVAVLooseFO->Fill(el_pt,wt);
       if(passingMVATight)      h_prbPt_Eta3_passingMVATight->Fill(el_pt,wt);
+
+      if(el_MVA94Xnoiso > -0.7179265933023059) h_prbPt_Eta3_MVA94Xwp98noiso->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta3_passingMVAVLooseMini->Fill(el_pt,wt);
       if(passingMVAVLooseMini2)   h_prbPt_Eta3_passingMVAVLooseMini2->Fill(el_pt,wt);
