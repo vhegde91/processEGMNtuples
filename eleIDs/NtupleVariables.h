@@ -82,6 +82,7 @@ class NtupleVariables : public TSelector {
    Float_t         el_tk_phi;
    Float_t         el_tk_pt;
    Float_t         el_trkIso;
+   Float_t         el_MVA94Xnoiso;
    Float_t         el_MVATTH;
    Float_t         el_chisq;
    Float_t         el_dxy;
@@ -256,6 +257,7 @@ class NtupleVariables : public TSelector {
    TBranch        *b_el_tk_phi;   //!
    TBranch        *b_el_tk_pt;   //!
    TBranch        *b_el_trkIso;   //!
+   TBranch        *b_el_MVA94Xnoiso;   //!
    TBranch        *b_el_MVATTH;   //!
    TBranch        *b_el_chisq;   //!
    TBranch        *b_el_dxy;   //!
@@ -462,6 +464,7 @@ void NtupleVariables::Init(TTree *tree, string nameData)
    fChain->SetBranchAddress("el_tk_phi", &el_tk_phi, &b_el_tk_phi);
    fChain->SetBranchAddress("el_tk_pt", &el_tk_pt, &b_el_tk_pt);
    fChain->SetBranchAddress("el_trkIso", &el_trkIso, &b_el_trkIso);
+   fChain->SetBranchAddress("el_MVA94Xnoiso", &el_MVA94Xnoiso, &b_el_MVA94Xnoiso);
    fChain->SetBranchAddress("el_MVATTH", &el_MVATTH, &b_el_MVATTH);
    fChain->SetBranchAddress("el_chisq", &el_chisq, &b_el_chisq);
    fChain->SetBranchAddress("el_dxy", &el_dxy, &b_el_dxy);
