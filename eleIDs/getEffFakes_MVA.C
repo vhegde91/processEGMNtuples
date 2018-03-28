@@ -53,8 +53,8 @@ void getEffFakes_MVA(){
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA94Xwp80iso","MVA94Xwp90iso"};
   
-  vector<TString> idNames    = {"MVATight","MVATight"};
-  vector<TString> refIdNames = {"MVATightNew","MVATightNew2"};
+  vector<TString> idNames    = {"MVATight","MVATight","MVAVLooseFONew","MVAVLoose"};
+  vector<TString> refIdNames = {"MVATightNew","MVATightNew2","MVAVLooseFO","MVA94Xwp98noiso"};
 
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA80Xwp80","MVA94Xwp80iso","MVA80Xwp90","MVA94Xwp90iso"};
@@ -77,12 +77,12 @@ void getEffFakes_MVA(){
   // f[1] = new TFile("b.root");
   bool hasOldID = true;
 
-  TPaveText *tx1 = new TPaveText(0.4,0.45,0.6,0.55,"NDC");
+  TPaveText *tx1 = new TPaveText(0.4,0.5,0.6,0.6,"NDC");
   tx1->AddText("|#eta|<0.8"); tx1->SetFillColor(0); tx1->SetShadowColor(0);
-  TPaveText *tx2 = new TPaveText(0.3,0.45,0.7,0.55,"NDC");
+  TPaveText *tx2 = new TPaveText(0.3,0.5,0.7,0.6,"NDC");
   tx2->AddText("0.8#leq|#eta|<1.479"); tx2->SetFillColor(0); tx2->SetShadowColor(0);
-  TPaveText *tx3 = new TPaveText(0.3,0.45,0.7,0.55,"NDC");
-  tx3->AddText("1.472#leq|#eta|<2.4"); tx3->SetFillColor(0); tx3->SetShadowColor(0);
+  TPaveText *tx3 = new TPaveText(0.3,0.5,0.7,0.6,"NDC");
+  tx3->AddText("1.479#leq|#eta|<2.4"); tx3->SetFillColor(0); tx3->SetShadowColor(0);
 
   for(int i=0;i<idNames.size();i++){
     if(idNames[i]==refIdNames[i]){

@@ -164,18 +164,21 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVA94Xwp90iso)   h_prbPt_Eta1_MVA94Xwp90iso->Fill(el_pt,wt);
       if(passingMVA94Xwp90noiso) h_prbPt_Eta1_MVA94Xwp90noiso->Fill(el_pt,wt);
 
-      if(passingMVAVLoose)     h_prbPt_Eta1_passingMVAVLoose->Fill(el_pt,wt);
-      if(passingMVAVLooseFO)   h_prbPt_Eta1_passingMVAVLooseFO->Fill(el_pt,wt);
-      if(passingMVATight)      h_prbPt_Eta1_passingMVATight->Fill(el_pt,wt);
+      if(passingMVAVLoose)     h_prbPt_Eta1_MVAVLoose->Fill(el_pt,wt);
+      if(passingMVAVLooseFO)   h_prbPt_Eta1_MVAVLooseFO->Fill(el_pt,wt);
+      if(passingMVATight)      h_prbPt_Eta1_MVATight->Fill(el_pt,wt);
 
       if(el_MVA94Xnoiso > -0.856871961305474) h_prbPt_Eta1_MVA94Xwp98noiso->Fill(el_pt,wt);
+      //MVA Tight
       if(el_MVA94Xnoiso > 0.68) h_prbPt_Eta1_MVATightNew->Fill(el_pt,wt);
       if(el_pt > 25 && el_MVA94Xnoiso > 0.68) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);
       else if(el_MVA94Xnoiso > (0.2 + (0.032)*(el_pt-10.)) ) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);//mva = 0.2+0.032(pt-10) 
+      //MVA VLooseFO
+      if(el_MVA94Xnoiso > -0.9) h_prbPt_Eta1_MVAVLooseFONew->Fill(el_pt,wt);
 
-      if(passingMVAVLooseMini)    h_prbPt_Eta1_passingMVAVLooseMini->Fill(el_pt,wt);
-      if(passingMVAVLooseMini2)   h_prbPt_Eta1_passingMVAVLooseMini2->Fill(el_pt,wt);
-      if(passingMVAVLooseMini4)   h_prbPt_Eta1_passingMVAVLooseMini4->Fill(el_pt,wt);
+      if(passingMVAVLooseMini)    h_prbPt_Eta1_MVAVLooseMini->Fill(el_pt,wt);
+      if(passingMVAVLooseMini2)   h_prbPt_Eta1_MVAVLooseMini2->Fill(el_pt,wt);
+      if(passingMVAVLooseMini4)   h_prbPt_Eta1_MVAVLooseMini4->Fill(el_pt,wt);
 
       if(passingLeptonMvaMIDEmuTightIP2DSIP3D8miniIso04)   h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);
       if(passingLeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04)  h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04->Fill(el_pt,wt);      
@@ -200,18 +203,21 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVA94Xwp90iso)   h_prbPt_Eta2_MVA94Xwp90iso->Fill(el_pt,wt);
       if(passingMVA94Xwp90noiso) h_prbPt_Eta2_MVA94Xwp90noiso->Fill(el_pt,wt);
 
-      if(passingMVAVLoose)     h_prbPt_Eta2_passingMVAVLoose->Fill(el_pt,wt);
-      if(passingMVAVLooseFO)   h_prbPt_Eta2_passingMVAVLooseFO->Fill(el_pt,wt);
-      if(passingMVATight)      h_prbPt_Eta2_passingMVATight->Fill(el_pt,wt);
+      if(passingMVAVLoose)     h_prbPt_Eta2_MVAVLoose->Fill(el_pt,wt);
+      if(passingMVAVLooseFO)   h_prbPt_Eta2_MVAVLooseFO->Fill(el_pt,wt);
+      if(passingMVATight)      h_prbPt_Eta2_MVATight->Fill(el_pt,wt);
 
       if(el_MVA94Xnoiso > -0.8107642141584835) h_prbPt_Eta2_MVA94Xwp98noiso->Fill(el_pt,wt);
-      if(el_MVA94Xnoiso > 0.47) h_prbPt_Eta2_MVATightNew->Fill(el_pt,wt);
-      if(el_pt > 25 && el_MVA94Xnoiso > 0.47) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);
+      //MVATight
+      if(el_MVA94Xnoiso > 0.475) h_prbPt_Eta2_MVATightNew->Fill(el_pt,wt);
+      if(el_pt > 25 && el_MVA94Xnoiso > 0.475) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);
       else if(el_MVA94Xnoiso > (0.1 + (0.025)*(el_pt-10.)) ) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);//mva = 0.1+0.025(pt-10) 
+      //MVA VLooseFO
+      if(el_MVA94Xnoiso > -0.88) h_prbPt_Eta2_MVAVLooseFONew->Fill(el_pt,wt);
 
-      if(passingMVAVLooseMini)    h_prbPt_Eta2_passingMVAVLooseMini->Fill(el_pt,wt);
-      if(passingMVAVLooseMini2)   h_prbPt_Eta2_passingMVAVLooseMini2->Fill(el_pt,wt);
-      if(passingMVAVLooseMini4)   h_prbPt_Eta2_passingMVAVLooseMini4->Fill(el_pt,wt);
+      if(passingMVAVLooseMini)    h_prbPt_Eta2_MVAVLooseMini->Fill(el_pt,wt);
+      if(passingMVAVLooseMini2)   h_prbPt_Eta2_MVAVLooseMini2->Fill(el_pt,wt);
+      if(passingMVAVLooseMini4)   h_prbPt_Eta2_MVAVLooseMini4->Fill(el_pt,wt);
 
       if(passingLeptonMvaM)   h_prbPt_Eta2_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta2_LeptonMvaVT->Fill(el_pt,wt);
@@ -237,18 +243,23 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(passingMVA94Xwp90iso)   h_prbPt_Eta3_MVA94Xwp90iso->Fill(el_pt,wt);
       if(passingMVA94Xwp90noiso) h_prbPt_Eta3_MVA94Xwp90noiso->Fill(el_pt,wt);
 
-      if(passingMVAVLoose)     h_prbPt_Eta3_passingMVAVLoose->Fill(el_pt,wt);
-      if(passingMVAVLooseFO)   h_prbPt_Eta3_passingMVAVLooseFO->Fill(el_pt,wt);
-      if(passingMVATight)      h_prbPt_Eta3_passingMVATight->Fill(el_pt,wt);
+      if(passingMVAVLoose)     h_prbPt_Eta3_MVAVLoose->Fill(el_pt,wt);
+      if(passingMVAVLooseFO)   h_prbPt_Eta3_MVAVLooseFO->Fill(el_pt,wt);
+      if(passingMVATight)      h_prbPt_Eta3_MVATight->Fill(el_pt,wt);
 
       if(el_MVA94Xnoiso > -0.7179265933023059) h_prbPt_Eta3_MVA94Xwp98noiso->Fill(el_pt,wt);
+      //MVA Tight
       if(el_MVA94Xnoiso > 0.32) h_prbPt_Eta3_MVATightNew->Fill(el_pt,wt);
       if(el_pt > 25 && el_MVA94Xnoiso > 0.32) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);
       else if(el_MVA94Xnoiso > (-0.1 + (0.028)*(el_pt-10.)) ) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);//mva = -0.1+0.028(pt-10) 
+      //MVA VLooseFO
+      if(el_MVA94Xnoiso > -0.9) h_prbPt_Eta3_MVAVLooseFONew->Fill(el_pt,wt);
+      // if(el_pt > 25 && el_MVA94Xnoiso > -0.9) h_prbPt_Eta3_MVAVLooseFONew->Fill(el_pt,wt);
+      // else if(el_MVA94Xnoiso > (-0.95 + (0.0033)*(el_pt-10.)) ) h_prbPt_Eta3_MVAVLooseFONew->Fill(el_pt,wt);//mva = -0.95+0.0033(pt-10) 
 
-      if(passingMVAVLooseMini)    h_prbPt_Eta3_passingMVAVLooseMini->Fill(el_pt,wt);
-      if(passingMVAVLooseMini2)   h_prbPt_Eta3_passingMVAVLooseMini2->Fill(el_pt,wt);
-      if(passingMVAVLooseMini4)   h_prbPt_Eta3_passingMVAVLooseMini4->Fill(el_pt,wt);
+      if(passingMVAVLooseMini)    h_prbPt_Eta3_MVAVLooseMini->Fill(el_pt,wt);
+      if(passingMVAVLooseMini2)   h_prbPt_Eta3_MVAVLooseMini2->Fill(el_pt,wt);
+      if(passingMVAVLooseMini4)   h_prbPt_Eta3_MVAVLooseMini4->Fill(el_pt,wt);
 
       if(passingLeptonMvaM)   h_prbPt_Eta3_LeptonMvaM->Fill(el_pt,wt);
       if(passingLeptonMvaVT)  h_prbPt_Eta3_LeptonMvaVT->Fill(el_pt,wt);
