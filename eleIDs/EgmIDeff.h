@@ -86,7 +86,10 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbEta_Pt25_CutBasedTightNoIso94X;
 
   //------------------ MVA ID ----------------
-  TH1D *h_Eta1_MVA94Xnoiso;
+  TH1D *h_pt10to15_Eta1_MVA94Xnoiso;
+  TH1D *h_pt10to20_Eta1_MVA94Xnoiso;
+  TH1D *h_pt25_Eta1_MVA94Xnoiso;
+
   TH1D *h_prbPt_Eta1_MVA80Xwp80;
   TH1D *h_prbPt_Eta1_MVA80Xwp90;
   TH1D *h_prbPt_Eta1_MVAWP80;
@@ -98,6 +101,7 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta1_MVA94Xwp90noiso;
 
   TH1D *h_prbPt_Eta1_MVAVLoose;
+  TH1D *h_prbPt_Eta1_MVAVLooseNew;
   TH1D *h_prbPt_Eta1_MVAVLooseFO;
   TH1D *h_prbPt_Eta1_MVAVLooseFONew;
   TH1D *h_prbPt_Eta1_MVATight;
@@ -115,7 +119,10 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04;
   TH1D *h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04;
 
-  TH1D *h_Eta2_MVA94Xnoiso;
+  TH1D *h_pt10to15_Eta2_MVA94Xnoiso;
+  TH1D *h_pt10to20_Eta2_MVA94Xnoiso;
+  TH1D *h_pt25_Eta2_MVA94Xnoiso;
+
   TH1D *h_prbPt_Eta2_MVA80Xwp80;
   TH1D *h_prbPt_Eta2_MVA80Xwp90;
   TH1D *h_prbPt_Eta2_MVAWP80;
@@ -127,6 +134,7 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta2_MVA94Xwp90noiso;
 
   TH1D *h_prbPt_Eta2_MVAVLoose;
+  TH1D *h_prbPt_Eta2_MVAVLooseNew;
   TH1D *h_prbPt_Eta2_MVAVLooseFO;
   TH1D *h_prbPt_Eta2_MVAVLooseFONew;
   TH1D *h_prbPt_Eta2_MVATight;
@@ -144,7 +152,10 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04;
   TH1D *h_prbPt_Eta2_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04;
 
-  TH1D *h_Eta3_MVA94Xnoiso;
+  TH1D *h_pt10to15_Eta3_MVA94Xnoiso;
+  TH1D *h_pt10to20_Eta3_MVA94Xnoiso;
+  TH1D *h_pt25_Eta3_MVA94Xnoiso;
+
   TH1D *h_prbPt_Eta3_MVA80Xwp80;
   TH1D *h_prbPt_Eta3_MVA80Xwp90;
   TH1D *h_prbPt_Eta3_MVAWP80;
@@ -156,6 +167,7 @@ class EgmIDeff : public NtupleVariables{
   TH1D *h_prbPt_Eta3_MVA94Xwp90noiso;
 
   TH1D *h_prbPt_Eta3_MVAVLoose;
+  TH1D *h_prbPt_Eta3_MVAVLooseNew;
   TH1D *h_prbPt_Eta3_MVAVLooseFO;
   TH1D *h_prbPt_Eta3_MVAVLooseFONew;
   TH1D *h_prbPt_Eta3_MVATight;
@@ -259,8 +271,11 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbEta_Pt25_CutBasedTightNoIso = new TH1D("prbEta_Pt25_CutBasedTightNoIso","|#eta| of the #geq 25GeV Pt probe passing CutBasedTightNoIso",40,0,4);
   h_prbEta_Pt25_CutBasedTightNoIso94X = new TH1D("prbEta_Pt25_CutBasedTightNoIso94X","|#eta| of the #geq 25GeV Pt probe passing CutBasedTightNoIso94X",40,0,4);
 
-  //------------------ MVA ID ----------------
-  h_Eta1_MVA94Xnoiso = new TH1D("Eta1_MVA94Xnoiso","MVA94Xnoiso values for |#eta| < 0.8",220,-1.1,1.1);
+  //------------------ MVA ID ---------------
+  h_pt10to15_Eta1_MVA94Xnoiso = new TH1D("pt10to15_Eta1_MVA94Xnoiso","MVA94Xnoiso values for |#eta| < 0.8 and pt 10to15",22000,-1.1,1.1);
+  h_pt10to20_Eta1_MVA94Xnoiso = new TH1D("pt10to20_Eta1_MVA94Xnoiso","MVA94Xnoiso values for |#eta| < 0.8 and pt 10to20",22000,-1.1,1.1);
+  h_pt25_Eta1_MVA94Xnoiso = new TH1D("pt25_Eta1_MVA94Xnoiso","MVA94Xnoiso values for |#eta| < 0.8 and pt >=25",22000,-1.1,1.1);
+
   h_prbPt_Eta1_MVA80Xwp80 = new TH1D("prbPt_Eta1_MVA80Xwp80","Pt of the probe, |#eta| < 0.8, passing MVA80Xwp80",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta1_MVA80Xwp90 = new TH1D("prbPt_Eta1_MVA80Xwp90","Pt of the probe, |#eta| < 0.8, passing MVA80Xwp90",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta1_MVAWP80 = new TH1D("prbPt_Eta1_MVAWP80","Pt of the probe, |#eta| < 0.8, passing MVAWP80",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
@@ -272,6 +287,7 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta1_MVA94Xwp90noiso = new TH1D("prbPt_Eta1_MVA94Xwp90noiso","Pt of the probe, |#eta| < 0.8, passing MVA94Xwp90noiso",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
 
   h_prbPt_Eta1_MVAVLoose = new TH1D("prbPt_Eta1_MVAVLoose","Pt of the probe, |#eta| < 0.8, passingMVAVLoose",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
+  h_prbPt_Eta1_MVAVLooseNew = new TH1D("prbPt_Eta1_MVAVLooseNew","Pt of the probe, |#eta| < 0.8, passingMVAVLoose New",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta1_MVAVLooseFO = new TH1D("prbPt_Eta1_MVAVLooseFO","Pt of the probe, |#eta| < 0.8, passingMVAVLooseFO",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta1_MVAVLooseFONew = new TH1D("prbPt_Eta1_MVAVLooseFONew","Pt of the probe, |#eta| < 0.8, passingMVAVLooseFO New",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta1_MVATight = new TH1D("prbPt_Eta1_MVATight","Pt of the probe, |#eta| < 0.8, passingMVATight",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
@@ -289,7 +305,10 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04 = new TH1D("prbPt_Eta1_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","Pt of the probe, |#eta| < 0.8, passing LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04 = new TH1D("prbPt_Eta1_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04","Pt of the probe, |#eta| < 0.8, passing LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
 
-  h_Eta2_MVA94Xnoiso = new TH1D("Eta2_MVA94Xnoiso","MVA94Xnoiso values for 0.8 #leq |#eta| < 1.479",220,-1.1,1.1);
+  h_pt10to15_Eta2_MVA94Xnoiso = new TH1D("pt10to15_Eta2_MVA94Xnoiso","MVA94Xnoiso values for 0.8 #leq |#eta| < 1.479 and pt 10to15",220000,-1.1,1.1);
+  h_pt10to20_Eta2_MVA94Xnoiso = new TH1D("pt10to20_Eta2_MVA94Xnoiso","MVA94Xnoiso values for 0.8 #leq |#eta| < 1.479 and pt 10to20",220000,-1.1,1.1);
+  h_pt25_Eta2_MVA94Xnoiso = new TH1D("pt25_Eta2_MVA94Xnoiso","MVA94Xnoiso values for 0.8 #leq |#eta| < 1.479 and pt >=25",220000,-1.1,1.1);
+
   h_prbPt_Eta2_MVA80Xwp80 = new TH1D("prbPt_Eta2_MVA80Xwp80","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing MVA80Xwp80",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta2_MVA80Xwp90 = new TH1D("prbPt_Eta2_MVA80Xwp90","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing MVA80Xwp90",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta2_MVAWP80 = new TH1D("prbPt_Eta2_MVAWP80","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing MVAWP80",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
@@ -301,6 +320,7 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta2_MVA94Xwp90noiso = new TH1D("prbPt_Eta2_MVA94Xwp90noiso","Pt of the probe, 0.8 #leq |#eta| < 1.479, MVA94Xwp90noiso",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
 
   h_prbPt_Eta2_MVAVLoose = new TH1D("prbPt_Eta2_MVAVLoose","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLoose",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
+  h_prbPt_Eta2_MVAVLooseNew = new TH1D("prbPt_Eta2_MVAVLooseNew","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLoose New",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta2_MVAVLooseFO = new TH1D("prbPt_Eta2_MVAVLooseFO","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLooseFO",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta2_MVAVLooseFONew = new TH1D("prbPt_Eta2_MVAVLooseFONew","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVAVLooseFO New",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta2_MVATight = new TH1D("prbPt_Eta2_MVATight","Pt of the probe, 0.8 #leq |#eta| < 1.479, passingMVATight",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
@@ -318,7 +338,10 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04 = new TH1D("prbPt_Eta2_LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta2_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04 = new TH1D("prbPt_Eta2_LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04","Pt of the probe, 0.8 #leq |#eta| < 1.479, passing LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
 
-  h_Eta3_MVA94Xnoiso = new TH1D("Eta3_MVA94Xnoiso","MVA94Xnoiso values for 1.479 #leq |#eta| < 2.5",220,-1.1,1.1);
+  h_pt10to15_Eta3_MVA94Xnoiso = new TH1D("pt10to15_Eta3_MVA94Xnoiso","MVA94Xnoiso values for 1.479 #leq |#eta| < 2.5 and pt 10to15",220000,-1.1,1.1);
+  h_pt10to20_Eta3_MVA94Xnoiso = new TH1D("pt10to20_Eta3_MVA94Xnoiso","MVA94Xnoiso values for 1.479 #leq |#eta| < 2.5 and pt 10to20",220000,-1.1,1.1);
+  h_pt25_Eta3_MVA94Xnoiso = new TH1D("pt25_Eta3_MVA94Xnoiso","MVA94Xnoiso values for 1.479 #leq |#eta| < 2.5 and pt >=25",220000,-1.1,1.1);
+
   h_prbPt_Eta3_MVA80Xwp80 = new TH1D("prbPt_Eta3_MVA80Xwp80","Pt of the probe, 1.479 #leq |#eta| < 2.5, passing MVA80Xwp80",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta3_MVA80Xwp90 = new TH1D("prbPt_Eta3_MVA80Xwp90","Pt of the probe, 1.479 #leq |#eta| < 2.5, passing MVA80Xwp90",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta3_MVAWP80 = new TH1D("prbPt_Eta3_MVAWP80","Pt of the probe, 1.479 #leq |#eta| < 2.5, passing MVAWP80",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
@@ -330,6 +353,7 @@ void EgmIDeff::BookHistogram(const char *outFileName) {
   h_prbPt_Eta3_MVA94Xwp90noiso = new TH1D("prbPt_Eta3_MVA94Xwp90noiso","Pt of the probe, 1.479 #leq |#eta| < 2.5, MVA94Xwp90noiso",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
 
   h_prbPt_Eta3_MVAVLoose = new TH1D("prbPt_Eta3_MVAVLoose","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLoose",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
+  h_prbPt_Eta3_MVAVLooseNew = new TH1D("prbPt_Eta3_MVAVLooseNew","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLoose New",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta3_MVAVLooseFO = new TH1D("prbPt_Eta3_MVAVLooseFO","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLooseFO",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta3_MVAVLooseFONew = new TH1D("prbPt_Eta3_MVAVLooseFONew","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVAVLooseFO New",ptBins_MVA.size()-1,&(ptBins_MVA[0]));
   h_prbPt_Eta3_MVATight = new TH1D("prbPt_Eta3_MVATight","Pt of the probe, 1.479 #leq |#eta| < 2.5, passingMVATight",ptBins_MVA.size()-1,&(ptBins_MVA[0]));

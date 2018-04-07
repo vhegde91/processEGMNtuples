@@ -53,8 +53,11 @@ void getEffFakes_MVA(){
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA94Xwp80iso","MVA94Xwp90iso"};
   
-  vector<TString> idNames    = {"MVATight","MVATight","MVAVLooseFONew","MVAVLoose"};
-  vector<TString> refIdNames = {"MVATightNew","MVATightNew2","MVAVLooseFO","MVA94Xwp98noiso"};
+  // vector<TString> idNames    = {"MVATight","MVATight","MVAVLooseFONew","MVAVLooseNew"};
+  // vector<TString> refIdNames = {"MVATightNew","MVATightNew2","MVAVLooseFO","MVAVLoose"};
+
+  vector<TString> idNames    = {"MVATightNew2","MVAVLooseFONew","MVAVLooseNew"};
+  vector<TString> refIdNames = {"MVATight","MVAVLooseFO","MVAVLoose"};
 
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA80Xwp80","MVA94Xwp80iso","MVA80Xwp90","MVA94Xwp90iso"};
@@ -79,9 +82,9 @@ void getEffFakes_MVA(){
 
   TPaveText *tx1 = new TPaveText(0.4,0.5,0.6,0.6,"NDC");
   tx1->AddText("|#eta|<0.8"); tx1->SetFillColor(0); tx1->SetShadowColor(0);
-  TPaveText *tx2 = new TPaveText(0.3,0.5,0.7,0.6,"NDC");
+  TPaveText *tx2 = new TPaveText(0.4,0.5,0.8,0.6,"NDC");
   tx2->AddText("0.8#leq|#eta|<1.479"); tx2->SetFillColor(0); tx2->SetShadowColor(0);
-  TPaveText *tx3 = new TPaveText(0.3,0.5,0.7,0.6,"NDC");
+  TPaveText *tx3 = new TPaveText(0.4,0.5,0.8,0.6,"NDC");
   tx3->AddText("1.479#leq|#eta|<2.4"); tx3->SetFillColor(0); tx3->SetShadowColor(0);
 
   for(int i=0;i<idNames.size();i++){
@@ -214,8 +217,12 @@ void setGraphProp(TGraphAsymmErrors* h_gr, int col1){
   h_gr->SetMarkerColor(col1);
   h_gr->SetLineColor(col1);
   h_gr->SetLineWidth(2);
-  h_gr->SetMinimum(0.007);
-  h_gr->SetMaximum(1.29);
+  // h_gr->SetMinimum(0.007);
+  // h_gr->SetMaximum(1.29);
+  // h_gr->SetMinimum(0.94);
+  // h_gr->SetMaximum(1.02);
+  h_gr->SetMinimum(0.89);
+  h_gr->SetMaximum(1.0);
   h_gr->SetTitle(0);
   h_gr->GetYaxis()->SetTitle("#varepsilon");
   h_gr->GetYaxis()->SetTitleOffset(1.08);
@@ -227,6 +234,7 @@ void setGraphProp(TGraphAsymmErrors* h_gr, int col1){
 }
 
 void setLastBinAsOverFlow(TH1D* h_hist){
+  return;
   double lastBinCt =h_hist->GetBinContent(h_hist->GetNbinsX()),overflCt =h_hist->GetBinContent(h_hist->GetNbinsX()+1);
   double lastBinErr=h_hist->GetBinError(h_hist->GetNbinsX()),  overflErr=h_hist->GetBinError(h_hist->GetNbinsX()+1);
 
