@@ -216,11 +216,12 @@ void getEffFakes_MVA(){
 void setGraphProp(TGraphAsymmErrors* h_gr, int col1){
   h_gr->SetMarkerColor(col1);
   h_gr->SetLineColor(col1);
-  h_gr->SetLineWidth(2);
-  h_gr->SetMinimum(0.007);
-  h_gr->SetMaximum(1.29);
-  // h_gr->SetMinimum(0.94);
-  // h_gr->SetMaximum(1.02);
+  if(col1!=kRed)  h_gr->SetLineWidth(2);
+  else  h_gr->SetLineWidth(2);
+  // h_gr->SetMinimum(0.007);
+  // h_gr->SetMaximum(1.29);
+  h_gr->SetMinimum(0.94);
+  h_gr->SetMaximum(1.02);
   // h_gr->SetMinimum(0.89);
   // h_gr->SetMaximum(1.0);
   h_gr->SetTitle(0);

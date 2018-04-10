@@ -40,16 +40,16 @@ void findEqn_MVA(){
   TH1::SetDefaultSumw2(1);
   TFile *f = new TFile("mc_eff.root");
   //  TString mvaHistName1="pt10to15_Eta3_MVA94Xnoiso";
-  TString mvaHistName1="pt10to20_Eta3_MVA94Xnoiso";
-  TString mvaHistName2="pt25_Eta3_MVA94Xnoiso";
+  TString mvaHistName1="pt5to10_Eta1_MVA94Xnoiso";
+  TString mvaHistName2="pt25_Eta1_MVA94Xnoiso";
 
-  TString refHistName="prbPt_Eta3_MVATight";
+  TString refHistName="prbPt_Eta1_MVAVLooseFO";
 
   TH1D *h_ref=(TH1D*)f->Get(refHistName);
   TH1D *h_mva1=(TH1D*)f->Get(mvaHistName1);
   TH1D *h_mva2=(TH1D*)f->Get(mvaHistName2);
 
-  double intgr1=h_ref->Integral(h_ref->FindBin(10.0001),h_ref->FindBin(19.999));
+  double intgr1=h_ref->Integral(h_ref->FindBin(5.0001),h_ref->FindBin(9.999));
   double intgr2=h_ref->Integral(h_ref->FindBin(25.0001),h_ref->GetNbinsX()+1);
 
   double mvaCut1=-100,mvaCut2=-100,sum=0.;
