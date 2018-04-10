@@ -180,14 +180,14 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       // else if(el_MVA94Xnoiso > (0.39305 + (0.2904/15.)*(el_pt-10.)))
       // 	h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);//mva = 0.31555 + ((0.68345 - (0.31555))/15)(pt-10)
       //MVA VLooseFO
-      if(el_pt >= 25 && el_MVA94Xnoiso > -0.88655)
+      if(el_pt >= 25 && el_MVA94Xnoiso > -0.887)
 	h_prbPt_Eta1_MVAVLooseFONew->Fill(el_pt,wt);
-      else if(el_MVA94Xnoiso > (-0.92985 + (0.0433/15.)*(el_pt-10.)))
+      else if(el_MVA94Xnoiso > (-0.930 + (0.043/15.)*(el_pt-10.)))
 	h_prbPt_Eta1_MVAVLooseFONew->Fill(el_pt,wt);
       //MVA VLoose
-      if(el_pt >= 25 && el_MVA94Xnoiso > -0.63995)
+      if(el_pt >= 25 && el_MVA94Xnoiso > -0.640)
 	h_prbPt_Eta1_MVAVLooseNew->Fill(el_pt,wt);
-      else if(el_MVA94Xnoiso > (-0.78785 + (0.1479/15.)*(el_pt-10.)))
+      else if(el_MVA94Xnoiso > (-0.788 + (0.148/15.)*(el_pt-10.)))
 	h_prbPt_Eta1_MVAVLooseNew->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta1_MVAVLooseMini->Fill(el_pt,wt);
@@ -233,14 +233,14 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       // else if(el_MVA94Xnoiso > (0.204235 + (0.27334/15.)*(el_pt-10.)))
       // 	h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);//mva = 0.13135 + ((0.47755 - (0.13135))/15)(pt-10)
       //MVA VLooseFO
-      if(el_pt >= 25 && el_MVA94Xnoiso > -0.889515)
+      if(el_pt >= 25 && el_MVA94Xnoiso > -0.890)
 	h_prbPt_Eta2_MVAVLooseFONew->Fill(el_pt,wt);
-      else if(el_MVA94Xnoiso > (-0.929515 + (0.04/15.)*(el_pt-10.)))
+      else if(el_MVA94Xnoiso > (-0.93 + (0.04/15.)*(el_pt-10.)))
 	h_prbPt_Eta2_MVAVLooseFONew->Fill(el_pt,wt);
       //MVA VLoose
-      if(el_pt >= 25 && el_MVA94Xnoiso > -0.775065)
+      if(el_pt >= 25 && el_MVA94Xnoiso > -0.775)
 	h_prbPt_Eta2_MVAVLooseNew->Fill(el_pt,wt);
-      else if(el_MVA94Xnoiso > (-0.850435 + (0.07537/15.)*(el_pt-10.)))
+      else if(el_MVA94Xnoiso > (-0.850 + (0.075/15.)*(el_pt-10.)))
 	h_prbPt_Eta2_MVAVLooseNew->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta2_MVAVLooseMini->Fill(el_pt,wt);
@@ -287,14 +287,14 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       // else if(el_MVA94Xnoiso > (0.057395 + (0.28892/15.)*(el_pt-10.)))
       // 	h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);//mva = -0.02875 + ((0.34635 - (-0.02875))/15)(pt-10)
       //MVA VLooseFO
-      if(el_pt >= 25 && el_MVA94Xnoiso > -0.909445)
+      if(el_pt >= 25 && el_MVA94Xnoiso > -0.910)
 	h_prbPt_Eta3_MVAVLooseFONew->Fill(el_pt,wt);
-      else if(el_MVA94Xnoiso > (-0.941625 + (0.03218/15.)*(el_pt-10.)))
+      else if(el_MVA94Xnoiso > (-0.942 + (0.032/15.)*(el_pt-10.)))
 	h_prbPt_Eta3_MVAVLooseFONew->Fill(el_pt,wt);
       //MVA VLoose
-      if(el_pt >= 25 && el_MVA94Xnoiso > -0.732725)
+      if(el_pt >= 25 && el_MVA94Xnoiso > -0.733)
 	h_prbPt_Eta3_MVAVLooseNew->Fill(el_pt,wt);
-      else if(el_MVA94Xnoiso > (-0.809435 + (0.07671/15.)*(el_pt-10.)))
+      else if(el_MVA94Xnoiso > (-0.81 + (0.077/15.)*(el_pt-10.)))
 	h_prbPt_Eta3_MVAVLooseNew->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta3_MVAVLooseMini->Fill(el_pt,wt);
