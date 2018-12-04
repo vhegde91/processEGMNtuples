@@ -1,1 +1,0 @@
-/home/vinay/Phy_Work/ROOT_Files/EGamma/soffi/TnP/ntuples_01162018/Moriond18_V1/mc/TnPTree_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_all.root
