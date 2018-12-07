@@ -381,6 +381,47 @@ void EgmIDeff::setMVAIDcuts(TString typeCut){
     mvaEta3_MVAVLooseFONew[1] = -1.461;
     mvaEta3_MVAVLooseFONew[2] = 0.042;
   }
+  else if(typeCut == "2016_V2"){
+    cout<<"Setting MVA NoIso94XV2 decriminator values for 2016 ....."<<endl;
+    //  y = [0] for 5 - 10 GeV
+    //  Eqn: y = [1] + [2] * (el_pt - 25.0) for 10 - 25 GeV
+    //  y = [1] for >= 25 GeV
+    mvaEta1_MVATightNew[0] = 99999;
+    mvaEta1_MVATightNew[1] = 3.977;
+    mvaEta1_MVATightNew[2] = 0.054;
+    
+    mvaEta2_MVATightNew[0] = 99999;
+    mvaEta2_MVATightNew[1] = 2.896;
+    mvaEta2_MVATightNew[2] = 0.017;
+    
+    mvaEta3_MVATightNew[0] = 99999;
+    mvaEta3_MVATightNew[1] = 1.382;
+    mvaEta3_MVATightNew[2] = 0.026;
+    ////////////////////////////////
+    mvaEta1_MVAVLooseNew[0] = 1.788;
+    mvaEta1_MVAVLooseNew[1] = 0.789;
+    mvaEta1_MVAVLooseNew[2] = 0.011;
+
+    mvaEta2_MVAVLooseNew[0] = 0.662;
+    mvaEta2_MVAVLooseNew[1] = 0.031;
+    mvaEta2_MVAVLooseNew[2] = 0.012;
+
+    mvaEta3_MVAVLooseNew[0] = 0.030;
+    mvaEta3_MVAVLooseNew[1] = -0.937;
+    mvaEta3_MVAVLooseNew[2] = 0.024;
+    ////////////////////////////////
+    mvaEta1_MVAVLooseFONew[0] = 0.508;
+    mvaEta1_MVAVLooseFONew[1] = -0.504;
+    mvaEta1_MVAVLooseFONew[2] = 0.015;
+
+    mvaEta2_MVAVLooseFONew[0] = -0.028;
+    mvaEta2_MVAVLooseFONew[1] = -0.715;
+    mvaEta2_MVAVLooseFONew[2] = 0.022;
+
+    mvaEta3_MVAVLooseFONew[0] = -1.333;
+    mvaEta3_MVAVLooseFONew[1] = -2.051;
+    mvaEta3_MVAVLooseFONew[2] = 0.033;
+  }
   else if(typeCut == "2017_V1"){
     cout<<"Setting MVA NoIso94XV1 decriminator values for 2017. ";
     cout<<"Eqn should be different. You need to change how these numbers are used!!!!............"<<endl;
