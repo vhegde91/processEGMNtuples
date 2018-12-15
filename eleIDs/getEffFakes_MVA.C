@@ -43,12 +43,12 @@ void getEffFakes_MVA(){
   TFile *f[nfiles];
   bool logY = 0;
   TString name="EGMid";
-  xAxisLabel="pT(GeV)";
+  xAxisLabel="pT (GeV)";
   char name2[100];
   TString cmsName = "CMS #it{#bf{Simulation}}";
   textOnTop.SetTextSize(0.04);
   intLumiE.SetTextSize(0.04);
-  sprintf(name2,"#bf{(13TeV)}");
+  sprintf(name2,"#bf{(13 TeV)}");
 
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA94Xwp80iso","MVA94Xwp90iso"};
@@ -57,7 +57,11 @@ void getEffFakes_MVA(){
   // vector<TString> refIdNames = {"MVATightNew","MVATightNew2","MVAVLooseFO","MVAVLoose"};
 
   vector<TString> idNames    = {"MVATightNew2","MVAVLooseFONew","MVAVLooseNew"};
-  vector<TString> refIdNames = {"MVATight","MVAVLooseFO","MVAVLoose"};
+  //  vector<TString> refIdNames = {"MVATight","MVAVLooseFO","MVAVLoose"};
+  vector<TString> refIdNames = {"MVATightSpr16","MVAVLooseFOSpr16","MVAVLooseSpr16"};
+
+  // vector<TString> idNames    = {"LeptonMvaM","LeptonMvaVT","LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
+  // vector<TString> refIdNames = {"LeptonMvaM","LeptonMvaVT","LeptonMvaMIDEmuTightIP2DSIP3D8miniIso04","LeptonMvaVTIDEmuTightIP2DSIP3D8miniIso04"};
 
   // vector<TString> idNames    = {"MVA94Xwp80noiso","MVA94Xwp80noiso","MVA94Xwp90noiso","MVA94Xwp90noiso"};
   // vector<TString> refIdNames = {"MVA80Xwp80","MVA94Xwp80iso","MVA80Xwp90","MVA94Xwp90iso"};
@@ -71,10 +75,11 @@ void getEffFakes_MVA(){
   TCanvas *cA[idNames.size()];
   TH1D *h_Num, *h_Den;  
 
-  f[0] = new TFile("mc_eff.root");//mc_eff_all.root");
-  f[1] = new TFile("mc_fake.root");//mc_fake_all.root");
-  //f[0] = new TFile("mc_eff_all.root");
-  //f[1] = new TFile("mc_fake_all.root");
+  f[0] = new TFile("mc_eff_2016_Spr16.root");//mc_eff_all.root");
+  // //  f[0] = new TFile("mc_eff.root");//mc_eff_all.root");
+  f[1] = new TFile("mc_fake_2016_Spr16.root");//mc_fake_all.root");
+  // f[0] = new TFile("mc_eff_v4.root");
+  // f[1] = new TFile("mc_fake_v4.root");
  
   // f[0] = new TFile("a.root");  
   // f[1] = new TFile("b.root");
@@ -118,7 +123,7 @@ void getEffFakes_MVA(){
 
       cA[i]->cd(1);cA[i]->SetLogy();
       if(hasOldID) setGraphProp(h_grRef[i],kBlue);
-      setGraphProp(h_gr[i],kRed);
+      setGraphProp(h_gr[i],kOrange-3);
 
       if(!hasOldID && p==0) h_gr[i]->SetLineColor(kTeal+9);
 
@@ -143,7 +148,7 @@ void getEffFakes_MVA(){
 
       cA[i]->cd(2);
       if(hasOldID) setGraphProp(h_grRef[i],kBlue);
-      setGraphProp(h_gr[i],kRed);
+      setGraphProp(h_gr[i],kOrange-3);
 
       if(!hasOldID && p==0) h_gr[i]->SetLineColor(kTeal+9);
 
@@ -168,7 +173,7 @@ void getEffFakes_MVA(){
 
       cA[i]->cd(3);
       if(hasOldID) setGraphProp(h_grRef[i],kBlue);
-      setGraphProp(h_gr[i],kRed);
+      setGraphProp(h_gr[i],kOrange-3);
       
       if(!hasOldID && p==0) h_gr[i]->SetLineColor(kTeal+9);
 
@@ -218,10 +223,10 @@ void setGraphProp(TGraphAsymmErrors* h_gr, int col1){
   h_gr->SetLineColor(col1);
   if(col1!=kRed)  h_gr->SetLineWidth(2);
   else  h_gr->SetLineWidth(2);
-  // h_gr->SetMinimum(0.007);
-  // h_gr->SetMaximum(1.29);
-  h_gr->SetMinimum(0.94);
-  h_gr->SetMaximum(1.02);
+  h_gr->SetMinimum(0.007);
+  h_gr->SetMaximum(1.29);
+  // h_gr->SetMinimum(0.94);
+  // h_gr->SetMaximum(1.02);
   // h_gr->SetMinimum(0.89);
   // h_gr->SetMaximum(1.0);
   h_gr->SetTitle(0);
