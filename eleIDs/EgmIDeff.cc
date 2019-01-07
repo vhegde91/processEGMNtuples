@@ -45,7 +45,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
   if(s_data.Contains("fake")) do_fakes = 1;
   if(s_data.Contains("Data") || s_data.Contains("Run201") || s_data.Contains("data")) mcSample=false;    
   Long64_t evtSurvived=0;
-  double wt=0;
+  double wt=0, A = 9999., B = 9999., C = 9999.;
   if(mcSample){
     cout<<"Taking it as MC........................."<<endl;
     if(do_fakes) cout<<"Calulating fakes.............."<<endl;
@@ -80,6 +80,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
     if(wt!=1) cout<<wt<<" ";
     // if(mcTrue!=mc_probe_flag)
     // printInfo(jentry);
+    //    if(jentry > 10000) break;
     h_ZMass->Fill(pair_mass,wt);
     //    if(event==87137852){ jentry = jentry + 5; continue;}
     //    cout<<event<<" ";
@@ -166,6 +167,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       else if(el_pt>=25) h_pt25_Eta1_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
       if(el_pt>=10 && el_pt<20) h_pt10to20_Eta1_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
       if(el_pt>=5 && el_pt<10) h_pt5to10_Eta1_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
+      if(el_pt>=40) h_pt40_Eta1_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
 
       if(passingMVA80Xwp80)   h_prbPt_Eta1_MVA80Xwp80->Fill(el_pt,wt);
       if(passingMVA80Xwp90)   h_prbPt_Eta1_MVA80Xwp90->Fill(el_pt,wt);
@@ -184,8 +186,15 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(el_noIsoMVA94XV2 > -0.856871961305474) h_prbPt_Eta1_MVA94Xwp98noiso->Fill(el_pt,wt);
       //MVA Tight
       if(el_noIsoMVA94XV2 > 0.68) h_prbPt_Eta1_MVATightNew->Fill(el_pt,wt);
-      if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta1_MVATightNew[1]) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);
-      else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta1_MVATightNew[1] + (mvaEta1_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);     //MVA VLooseFO
+      if(s_data.Contains("2016")){
+	if(el_pt >= 40 && el_noIsoMVA94XV2 > mvaEta1_MVATightNew[1]+(15.0*mvaEta1_MVATightNew[2])) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);
+	else if(el_pt >=10 && el_pt < 40 && el_noIsoMVA94XV2 > (mvaEta1_MVATightNew[1] + (mvaEta1_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);	
+      }
+      else{
+	if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta1_MVATightNew[1]) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);
+	else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta1_MVATightNew[1] + (mvaEta1_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta1_MVATightNew2->Fill(el_pt,wt);
+      }
+      //MVA VLooseFO
       if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta1_MVAVLooseFONew[1])
 	h_prbPt_Eta1_MVAVLooseFONew->Fill(el_pt,wt);
       else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta1_MVAVLooseFONew[1] + (mvaEta1_MVAVLooseFONew[2]*(el_pt-25.)) ))
@@ -199,6 +208,17 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
 	h_prbPt_Eta1_MVAVLooseNew->Fill(el_pt,wt);
       else if(el_pt >=5 && el_pt < 10 && el_noIsoMVA94XV2 > mvaEta1_MVAVLooseNew[0]) 
 	h_prbPt_Eta1_MVAVLooseNew->Fill(el_pt,wt);
+      //Spring16 cuts
+      A = 0.77; B = 0.52;
+      if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta1_MVATightSpr16->Fill(el_pt,wt);
+
+      A = -0.48; B = -0.85; C = 0.46;
+      if(el_pt >=5 && el_pt < 10 && el_hzzMVA80X > C) h_prbPt_Eta1_MVAVLooseSpr16->Fill(el_pt,wt);
+      else if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta1_MVAVLooseSpr16->Fill(el_pt,wt);
+
+      A = -0.86; B = -0.96; C = -0.30;
+      if(el_pt >=5 && el_pt < 10 && el_hzzMVA80X > C) h_prbPt_Eta1_MVAVLooseFOSpr16->Fill(el_pt,wt);
+      else if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta1_MVAVLooseFOSpr16->Fill(el_pt,wt);     
 
       if(passingMVAVLooseMini)    h_prbPt_Eta1_MVAVLooseMini->Fill(el_pt,wt);
       if(passingMVAVLooseMini2)   h_prbPt_Eta1_MVAVLooseMini2->Fill(el_pt,wt);
@@ -219,6 +239,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       else if(el_pt>=25) h_pt25_Eta2_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
       if(el_pt>=10 && el_pt<20) h_pt10to20_Eta2_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
       if(el_pt>=5 && el_pt<10) h_pt5to10_Eta2_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
+      if(el_pt>=40) h_pt40_Eta2_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
 
       if(passingMVA80Xwp80)   h_prbPt_Eta2_MVA80Xwp80->Fill(el_pt,wt);
       if(passingMVA80Xwp90)   h_prbPt_Eta2_MVA80Xwp90->Fill(el_pt,wt);
@@ -237,8 +258,15 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(el_noIsoMVA94XV2 > -0.8107642141584835) h_prbPt_Eta2_MVA94Xwp98noiso->Fill(el_pt,wt);
       //MVATight
       if(el_noIsoMVA94XV2 > 0.68) h_prbPt_Eta2_MVATightNew->Fill(el_pt,wt);
-      if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta2_MVATightNew[1]) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);
-      else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta2_MVATightNew[1] + (mvaEta2_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);     //MVA VLooseFO
+      if(s_data.Contains("2016")){
+	if(el_pt >= 40 && el_noIsoMVA94XV2 > mvaEta2_MVATightNew[1]+(15.0*mvaEta2_MVATightNew[2])) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);
+	else if(el_pt >=10 && el_pt < 40 && el_noIsoMVA94XV2 > (mvaEta2_MVATightNew[1] + (mvaEta2_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);	
+      }
+      else{
+	if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta2_MVATightNew[1]) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);
+	else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta2_MVATightNew[1] + (mvaEta2_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta2_MVATightNew2->Fill(el_pt,wt);
+      }
+      //MVA VLooseFO
       if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta2_MVAVLooseFONew[1])
 	h_prbPt_Eta2_MVAVLooseFONew->Fill(el_pt,wt);
       else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta2_MVAVLooseFONew[1] + (mvaEta2_MVAVLooseFONew[2]*(el_pt-25.)) ))
@@ -252,6 +280,18 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
 	h_prbPt_Eta2_MVAVLooseNew->Fill(el_pt,wt);
       else if(el_pt >=5 && el_pt < 10 && el_noIsoMVA94XV2 > mvaEta2_MVAVLooseNew[0]) 
 	h_prbPt_Eta2_MVAVLooseNew->Fill(el_pt,wt);
+
+      //Spring16 cuts
+      A = 0.56; B = 0.11;
+      if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta2_MVATightSpr16->Fill(el_pt,wt);
+
+      A = -0.67; B = -0.91; C = -0.03;
+      if(el_pt >=5 && el_pt < 10 && el_hzzMVA80X > C) h_prbPt_Eta2_MVAVLooseSpr16->Fill(el_pt,wt);
+      else if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta2_MVAVLooseSpr16->Fill(el_pt,wt);
+
+      A = -0.85; B = -0.96; C = -0.36;
+      if(el_pt >=5 && el_pt < 10 && el_hzzMVA80X > C) h_prbPt_Eta2_MVAVLooseFOSpr16->Fill(el_pt,wt);
+      else if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta2_MVAVLooseFOSpr16->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta2_MVAVLooseMini->Fill(el_pt,wt);
       if(passingMVAVLooseMini2)   h_prbPt_Eta2_MVAVLooseMini2->Fill(el_pt,wt);
@@ -273,6 +313,7 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       else if(el_pt>=25) h_pt25_Eta3_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
       if(el_pt>=10 && el_pt<20) h_pt10to20_Eta3_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
       if(el_pt>=5 && el_pt<10) h_pt5to10_Eta3_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
+      if(el_pt>=40) h_pt40_Eta3_MVA94Xnoiso->Fill(el_noIsoMVA94XV2,wt);
 
       if(passingMVA80Xwp80)   h_prbPt_Eta3_MVA80Xwp80->Fill(el_pt,wt);
       if(passingMVA80Xwp90)   h_prbPt_Eta3_MVA80Xwp90->Fill(el_pt,wt);
@@ -291,8 +332,14 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
       if(el_noIsoMVA94XV2 > -0.7179265933023059) h_prbPt_Eta3_MVA94Xwp98noiso->Fill(el_pt,wt);
       //MVA Tight
       if(el_noIsoMVA94XV2 > 0.32) h_prbPt_Eta3_MVATightNew->Fill(el_pt,wt);
-      if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta3_MVATightNew[1]) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);
-      else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta3_MVATightNew[1] + (mvaEta3_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);
+      if(s_data.Contains("2016")){
+	if(el_pt >= 40 && el_noIsoMVA94XV2 > mvaEta3_MVATightNew[1]+(15.0*mvaEta3_MVATightNew[2])) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);
+	else if(el_pt >=10 && el_pt < 40 && el_noIsoMVA94XV2 > (mvaEta3_MVATightNew[1] + (mvaEta3_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);	
+      }
+      else{
+	if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta3_MVATightNew[1]) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);
+	else if(el_pt >=10 && el_pt < 25 && el_noIsoMVA94XV2 > (mvaEta3_MVATightNew[1] + (mvaEta3_MVATightNew[2]*(el_pt-25.)) )) h_prbPt_Eta3_MVATightNew2->Fill(el_pt,wt);
+      }
       //MVA VLooseFO
       if(el_pt >= 25 && el_noIsoMVA94XV2 > mvaEta3_MVAVLooseFONew[1])
 	h_prbPt_Eta3_MVAVLooseFONew->Fill(el_pt,wt);
@@ -307,6 +354,18 @@ void EgmIDeff::EventLoop(const char *data,const char *inputFileList) {
 	h_prbPt_Eta3_MVAVLooseNew->Fill(el_pt,wt);
       else if(el_pt >=5 && el_pt < 10 && el_noIsoMVA94XV2 > mvaEta3_MVAVLooseNew[0]) 
 	h_prbPt_Eta3_MVAVLooseNew->Fill(el_pt,wt);
+
+      //Spring16 cuts
+      A = 0.48; B = -0.01;
+      if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta3_MVATightSpr16->Fill(el_pt,wt);
+
+      A = -0.49; B = -0.83; C = 0.06;
+      if(el_pt >=5 && el_pt < 10 && el_hzzMVA80X > C) h_prbPt_Eta3_MVAVLooseSpr16->Fill(el_pt,wt);
+      else if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta3_MVAVLooseSpr16->Fill(el_pt,wt);
+
+      A = -0.81; B = -0.95; C = -0.63;
+      if(el_pt >=5 && el_pt < 10 && el_hzzMVA80X > C) h_prbPt_Eta3_MVAVLooseFOSpr16->Fill(el_pt,wt);
+      else if(el_pt >=10 && el_nonTrigMVA80X > (std::min( A, std::max(B , A + ((B-A)/10.0)*(el_pt-15.0) ) ))) h_prbPt_Eta3_MVAVLooseFOSpr16->Fill(el_pt,wt);
 
       if(passingMVAVLooseMini)    h_prbPt_Eta3_MVAVLooseMini->Fill(el_pt,wt);
       if(passingMVAVLooseMini2)   h_prbPt_Eta3_MVAVLooseMini2->Fill(el_pt,wt);
@@ -386,41 +445,93 @@ void EgmIDeff::setMVAIDcuts(TString typeCut){
     //  y = [0] for 5 - 10 GeV
     //  Eqn: y = [1] + [2] * (el_pt - 25.0) for 10 - 25 GeV
     //  y = [1] for >= 25 GeV
+    //---------match 2017,2018 performance
+    // mvaEta1_MVATightNew[0] = 99999;
+    // mvaEta1_MVATightNew[1] = 3.977;
+    // mvaEta1_MVATightNew[2] = 0.054;
+    
+    // mvaEta2_MVATightNew[0] = 99999;
+    // mvaEta2_MVATightNew[1] = 2.896;
+    // mvaEta2_MVATightNew[2] = 0.017;
+    
+    // mvaEta3_MVATightNew[0] = 99999;
+    // mvaEta3_MVATightNew[1] = 1.382;
+    // mvaEta3_MVATightNew[2] = 0.026;
+
+    //---------match 2016 (Moriond17) performance
+    //  Eqn: y = [1] + [2] * (el_pt - 40.0) for 10 - 40 GeV
+    //       y = [1] + [2] * 15.0 for >= 40 GeV
     mvaEta1_MVATightNew[0] = 99999;
-    mvaEta1_MVATightNew[1] = 3.977;
-    mvaEta1_MVATightNew[2] = 0.054;
+    mvaEta1_MVATightNew[1] = 3.447;
+    mvaEta1_MVATightNew[2] = 0.063;
     
     mvaEta2_MVATightNew[0] = 99999;
-    mvaEta2_MVATightNew[1] = 2.896;
-    mvaEta2_MVATightNew[2] = 0.017;
+    mvaEta2_MVATightNew[1] = 2.522;
+    mvaEta2_MVATightNew[2] = 0.058;
     
     mvaEta3_MVATightNew[0] = 99999;
-    mvaEta3_MVATightNew[1] = 1.382;
-    mvaEta3_MVATightNew[2] = 0.026;
+    mvaEta3_MVATightNew[1] = 1.555;
+    mvaEta3_MVATightNew[2] = 0.075;
     ////////////////////////////////
-    mvaEta1_MVAVLooseNew[0] = 1.788;
-    mvaEta1_MVAVLooseNew[1] = 0.789;
-    mvaEta1_MVAVLooseNew[2] = 0.011;
+    //  y = [0] for 5 - 10 GeV
+    //  Eqn: y = [1] + [2] * (el_pt - 25.0) for 10 - 25 GeV
+    //  y = [1] for >= 25 GeV
+    //---------match 2017,2018 performance
+    // mvaEta1_MVAVLooseNew[0] = 1.788;
+    // mvaEta1_MVAVLooseNew[1] = 0.789;
+    // mvaEta1_MVAVLooseNew[2] = 0.011;
 
-    mvaEta2_MVAVLooseNew[0] = 0.662;
-    mvaEta2_MVAVLooseNew[1] = 0.031;
-    mvaEta2_MVAVLooseNew[2] = 0.012;
+    // mvaEta2_MVAVLooseNew[0] = 0.662;
+    // mvaEta2_MVAVLooseNew[1] = 0.031;
+    // mvaEta2_MVAVLooseNew[2] = 0.012;
 
-    mvaEta3_MVAVLooseNew[0] = 0.030;
-    mvaEta3_MVAVLooseNew[1] = -0.937;
-    mvaEta3_MVAVLooseNew[2] = 0.024;
+    // mvaEta3_MVAVLooseNew[0] = 0.030;
+    // mvaEta3_MVAVLooseNew[1] = -0.937;
+    // mvaEta3_MVAVLooseNew[2] = 0.024;
+
+    //---------match 2016 (Moriond17) performance
+    mvaEta1_MVAVLooseNew[0] = 1.309;
+    mvaEta1_MVAVLooseNew[1] = 0.887;
+    mvaEta1_MVAVLooseNew[2] = 0.088;
+
+    mvaEta2_MVAVLooseNew[0] = 0.373;
+    mvaEta2_MVAVLooseNew[1] = 0.112;
+    mvaEta2_MVAVLooseNew[2] = 0.099;
+
+    mvaEta3_MVAVLooseNew[0] = 0.071;
+    mvaEta3_MVAVLooseNew[1] = -0.017;
+    mvaEta3_MVAVLooseNew[2] = 0.137;
+
     ////////////////////////////////
-    mvaEta1_MVAVLooseFONew[0] = 0.508;
-    mvaEta1_MVAVLooseFONew[1] = -0.504;
-    mvaEta1_MVAVLooseFONew[2] = 0.015;
+    //---------match 2017,2018 performance
+    //  y = [0] for 5 - 10 GeV
+    //  Eqn: y = [1] + [2] * (el_pt - 25.0) for 10 - 25 GeV
+    //  y = [1] for >= 25 GeV
+    // mvaEta1_MVAVLooseFONew[0] = 0.508;
+    // mvaEta1_MVAVLooseFONew[1] = -0.504;
+    // mvaEta1_MVAVLooseFONew[2] = 0.015;
 
-    mvaEta2_MVAVLooseFONew[0] = -0.028;
-    mvaEta2_MVAVLooseFONew[1] = -0.715;
-    mvaEta2_MVAVLooseFONew[2] = 0.022;
+    // mvaEta2_MVAVLooseFONew[0] = -0.028;
+    // mvaEta2_MVAVLooseFONew[1] = -0.715;
+    // mvaEta2_MVAVLooseFONew[2] = 0.022;
 
-    mvaEta3_MVAVLooseFONew[0] = -1.333;
-    mvaEta3_MVAVLooseFONew[1] = -2.051;
-    mvaEta3_MVAVLooseFONew[2] = 0.033;
+    // mvaEta3_MVAVLooseFONew[0] = -1.333;
+    // mvaEta3_MVAVLooseFONew[1] = -2.051;
+    // mvaEta3_MVAVLooseFONew[2] = 0.033;
+
+    //---------match 2016 (Moriond17) performance
+    mvaEta1_MVAVLooseFONew[0] = -0.259;
+    mvaEta1_MVAVLooseFONew[1] = -0.388;
+    mvaEta1_MVAVLooseFONew[2] = 0.109;
+
+    mvaEta2_MVAVLooseFONew[0] = -0.256;
+    mvaEta2_MVAVLooseFONew[1] = -0.696;
+    mvaEta2_MVAVLooseFONew[2] = 0.106;
+
+    mvaEta3_MVAVLooseFONew[0] = -1.630;
+    mvaEta3_MVAVLooseFONew[1] = -1.219;
+    mvaEta3_MVAVLooseFONew[2] = 0.148;
+
   }
   else if(typeCut == "2017_V1"){
     cout<<"Setting MVA NoIso94XV1 decriminator values for 2017. ";
