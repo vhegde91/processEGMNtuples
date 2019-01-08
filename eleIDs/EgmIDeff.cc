@@ -459,7 +459,7 @@ void EgmIDeff::setMVAIDcuts(TString typeCut){
     // mvaEta3_MVATightNew[2] = 0.026;
 
     //---------match 2016 (Moriond17) performance
-    //  Eqn: y = [1] + [2] * (el_pt - 40.0) for 10 - 40 GeV
+    //  Eqn: y = [1] + [2] * (el_pt - 25.0) for 10 - 40 GeV
     //       y = [1] + [2] * 15.0 for >= 40 GeV
     mvaEta1_MVATightNew[0] = 99999;
     mvaEta1_MVATightNew[1] = 3.447;
